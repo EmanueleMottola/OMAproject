@@ -1,3 +1,4 @@
+package assignment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -56,11 +57,13 @@ public class Timeslot {
 		return true;
 	}
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
 	@Override
 	public String toString() {
-		return "Timeslot{" +
-				"idTimeslot=" + idTimeslot +
-				", examsTimeslot=" + examsTimeslot +
-				'}';
+		return "Timeslot " + idTimeslot;
 	}
+	
+	
 }

@@ -1,283 +1,249 @@
+package assignment;
+
 import java.io.*;
-import java.util.*;
-import org.coinor.opents.*;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Scanner;
+
+import org.jgrapht.Graphs;
+import org.jgrapht.graph.DefaultWeightedEdge;
+import org.jgrapht.graph.DirectedWeightedMultigraph;
+
+
 
 public class ExaminationTimetabling {
 	private Map<Integer,Exam> exams;
-	//private List<Exam> listaE;
+	private List<Exam> listaE;
 	private Map<Integer, Timeslot> timeslots;
-	//private List<Timeslot> listaT;
+	private List<Timeslot> listaT;
 	private int totalTimeslots;
-	private int[][] conflicts;
-	private int numberOfExams;
+	private int[][] conflicts; 
 	private int numberOfStudent;
+	
+	double LocaltotalPenalty = 0;
+	double totalPenalty = 0;
 	// indexex start from 0, so for example if you want to know if exam 4 and 7 are in conflict you have to access the cell [3,6]
 	
+	private DirectedWeightedMultigraph<Timeslot, DefaultWeightedEdge> grafo;
 	// Constructor
 	public ExaminationTimetabling() {
+		listaE = new ArrayList<>();
 		exams = new LinkedHashMap<Integer, Exam>();
 		timeslots = new LinkedHashMap<Integer, Timeslot>();
+		grafo = new DirectedWeightedMultigraph<Timeslot, DefaultWeightedEdge>(DefaultWeightedEdge.class);
 	}
 	
 	/* PUT THE ALGORITHM FUNCTION'S HERE*/
+	/* PUT THE ALGORITHM FUNCTION'S HERE*/
 
-
-	/*public void TS(){
-		ObjectiveFunction objFunc = new MyObjectiveFunction( timeslots );
-		Solution initialSolution  = new MyGreedyStartSolution( timeslots, exams, conflicts );
-		MoveManager   moveManager = new MyMoveManager();
-		TabuList         tabuList = new SimpleTabuList( 7 ); // In OpenTS package
-
-		// Create Tabu Search object
-		TabuSearch tabuSearch = new SingleThreadedTabuSearch(
-				initialSolution,
-				moveManager,
-				objFunc,
-				tabuList,
-				new BestEverAspirationCriteria(), // In OpenTS package
-				false ); // maximizing = yes/no; false means minimizing
-
-		// Start solving
-		tabuSearch.setIterationsToGo( 100 );
-		tabuSearch.startSolving();
-
-		// Show solution
-		MySolution best = (MySolution)tabuSearch.getBestSolution();
-		System.out.println( "Best Solution:\n" + best );
-	}*/
-
-
-
-	public double ObjFunc(Map<Integer,Timeslot> tclone, Map<Integer, Exam> eclone){
+	public double CalculatePenalty(){
 	    int t1=0, t2=0, n;
-	    double totalPenalty = 0, penalty=0;
-	    int[] power = new int[]{1, 2, 4 ,8 ,16};
+	    double penalty;
+	    int[] power = {1, 2, 4, 8, 16};
 
-	    for(int i=0; i < eclone.size(); i++){
-	        for(int j=i; j < eclone.size(); j++){
-	            if( i != j ){
-                    if(conflicts[i][j] != 0){
-
-                        System.out.println(eclone.get(i+1).toString());
-                        t1 = eclone.get(i+1).getTimeSlot().getIdTimeSlot();
-                        t2 = eclone.get(j+1).getTimeSlot().getIdTimeSlot();
-
-
-                        if(t1 > t2){
-                            n = t1- t2;
+	    this.totalPenalty = 0;
+	    for(Exam e1 : listaE){
+	        for(Exam e2 : listaE){
+	            if( !e1.equals(e2) ){
+	            	 if(conflicts[e1.getIdExam()-1][e2.getIdExam()-1] != 0){
+	            		 
+	            		 t1 = e1.getTimeSlot().getIdTimeSlot();
+	            		 t2 = e2.getTimeSlot().getIdTimeSlot();
+	            		 
+	            		 if(t1 > t2){
+	            			 
+	            			 n = t1 - t2; 
                         }
-                        else
-                            n = t2 - t1;
+	            		 else{
+	            			 
+	            			 n = t2 - t1;
+	            		 }
+	            		 //System.out.println(n);
 
-                        if ( n > 5)
+                        if ( n > 5){
                             penalty = 0;
-                        else
-                            penalty = conflicts[i][j] * power[(5-n)] / numberOfStudent;
-
-
-                        totalPenalty += penalty;
+                        }
+                        else{
+                            penalty = conflicts[e1.getIdExam()-1][e2.getIdExam()-1] * power[5-n];
+                            //System.out.println(penalty);
+                        }
+                       
+                        this.totalPenalty += penalty;
                     }
                 }
 
             }
         }
-        System.out.println("Total penalty is :" + totalPenalty);
-        return totalPenalty;
+        System.out.println("Total penalty is :" + totalPenalty/numberOfStudent);
+        this.LocaltotalPenalty = totalPenalty;
+        return this.totalPenalty;
     }
 
-    public void tabusearch(){
-	    double penalty=0;
-        double oldpenalty=0;
-
-        //inserire ciclo
-
-	    //clone
-        Map<Integer,Timeslot> tclone = new HashMap<Integer, Timeslot>(timeslots);
-        Map<Integer,Exam> eclone = new HashMap<Integer, Exam>(exams);
-        //generation(check feasibility)
-        neighborGen(tclone,eclone);
-
-        //evaluate su tclone
-        penalty=ObjFunc(tclone,eclone);
-        //swap con tclone se ? migliore
-        //se swap -> inseriamo tabu list
-
-
-    }
-
-
-
-    public void neighborGen(Map<Integer, Timeslot> tclone, Map<Integer, Exam> eclone) {
-        int feasible = 0;
-        Random RandomNum=new Random(totalTimeslots);
-        int rand_timeslot1 = 0;
-        int rand_timeslot2 = 0;
-        int rand_exam1 = 0;
-        int rand_exam2 = 0;
-        Exam e1 = new Exam(0, 0);
-        Exam e2 = new Exam(0, 0);
-
-        //generation con swap
-        while (feasible == 0) {
-
-            rand_timeslot1 = 0;
-            rand_timeslot2 = 0;
-            while (rand_timeslot1 == rand_timeslot2) {
-                //we take two random timeslots
-                rand_timeslot1 = RandomNum.nextInt(totalTimeslots);
-                rand_timeslot2 = RandomNum.nextInt(totalTimeslots);
-
-            }
-            //we choose randomly two exams of the timeslots selected before
-            rand_exam1 = RandomNum.nextInt(tclone.get(rand_timeslot1).getExamsOfTimeslot().size());
-            rand_exam2 = RandomNum.nextInt(tclone.get(rand_timeslot2).getExamsOfTimeslot().size());
-
-            //before swapping on the clone structure we loook at the feasibility
-            feasible = checkfeasibility(rand_timeslot1, rand_timeslot2, rand_exam1, rand_exam2);
-
-            if (feasible == 1) {
-                //UPDATE OF THE TIMESLOTS' MAP
-                //we take the two exams from the two timestlots using random values
-                e1 = tclone.get(rand_timeslot1).getExamsOfTimeslot().get(rand_exam1);
-                e2 = tclone.get(rand_timeslot2).getExamsOfTimeslot().get(rand_exam2);
-
-                //we remove from the timeslots the exams we want to swap
-                tclone.get(rand_timeslot1).removeExamFromTimeslot(e1);
-                tclone.get(rand_timeslot2).removeExamFromTimeslot(e2);
-
-                //we update the new exams' timeslots field value
-                e1.setTimeSlot(tclone.get(rand_timeslot2));
-                e2.setTimeSlot(tclone.get(rand_timeslot1));
-
-                //now we add the exams to their new timeslots
-                tclone.get(rand_timeslot1).addExamToTimeslot(e2);
-                tclone.get(rand_timeslot2).addExamToTimeslot(e1);
-
-                //---------------------------------------------------------------------------
-
-                //we update the exams' map
-                eclone.get(e1.getIdExam()).setTimeSlot(tclone.get(rand_timeslot2));
-                eclone.get(e2.getIdExam()).setTimeSlot(tclone.get(rand_timeslot1));
-
-            }
-
-        }
-    }
-
-    private int checkfeasibility(int rndt1, int rndt2, int rnde1, int rnde2){
-        int idExam=0;
-
-        for(Exam e : timeslots.get(rndt1).getExamsOfTimeslot()){
-            idExam = e.getIdExam();
-
-            if(conflicts[rnde2-1][idExam-1]!=0){
-                return 0;
-            }
-        }
-
-        for(Exam e : timeslots.get(rndt2).getExamsOfTimeslot()){
-            idExam = e.getIdExam();
-
-            if(conflicts[rnde1-1][idExam-1]!=0){
-                return 0;
-            }
-        }
-
-
-        return 1;
-    }
-
-	public void preACP(){
-
-		List<Timeslot> listaTimeslots = new ArrayList<>(timeslots.values());
-
-		for (Map.Entry<Integer, Exam> entry : exams.entrySet())
+	
+    public void preACP(){
+		
+    	int min0;
+	
+    	for (Exam e : listaE)
 		{
-			ACP(entry.getValue(), (Timeslot) timeslots.values().toArray()[0], listaTimeslots);
+			min0 = Integer.MAX_VALUE;
+			for(Timeslot tg : listaT){
+				
+				grafo.removeAllEdges(grafo.edgesOf(tg));
+			}
+			
+			int conflict_i = 0;
+			int t0 = -1;
+			for(Timeslot t : listaT){
+					
+				conflict_i = 0;
+				for(Exam ets : t.getExamsOfTimeslot()){
+						
+				    if(conflicts[e.getIdExam()-1][ets.getIdExam()-1]!=0)
+				    {
+					   conflict_i++;
+				    }
+				}
+				if(conflict_i<2){
+					t0 = t.getIdTimeSlot();
+					break;
+				}
+				if(conflict_i<min0){
+					t0 = t.getIdTimeSlot();
+				}
+			}
+				ACP(e, timeslots.get(t0), listaT);	
 		}
 	}
+
 	//colour
 	private void ACP(Exam e, Timeslot t, List<Timeslot> listaT){
 		
 			int min = Integer.MAX_VALUE;
 			Exam exam_spostato = null;
 			Timeslot time_spostato = null;
-			
 			//controllo gli esami del timeslot
-			for(Exam et : t.getExamsOfTimeslot() )
+			for(Exam et : t.getExamsOfTimeslot())
 			{
 				//System.out.println(et);
-				//se c'? un esame con cui ? in conflitto
+				//se c'è un esame con cui è in conflitto
 				//System.out.println(grafo.containsEdge(e, et));
 				//System.out.println(conflicts[e.getIdExam()-1][et.getIdExam()-1]);
 				if(conflicts[e.getIdExam()-1][et.getIdExam()-1]!=0)
 				{
-					//verifico tutte le possibilit? per i due esami
+					//verifico tutte le possibilità per i due esami
 					for(Timeslot ts : listaT)
 					{
 						if(ts != t){
-							int conflict_e = 0;
-							int conflict_et = 0;
-							for(Exam ets : ts.getExamsOfTimeslot()){
+						int conflict_e = 0;
+						int conflict_et = 0;
+						for(Exam ets : ts.getExamsOfTimeslot()){
 							
-								if(conflicts[e.getIdExam()-1][ets.getIdExam()-1]!=0)
-								{
-									conflict_e++;
-								}
-								if(conflicts[et.getIdExam()-1][ets.getIdExam()-1]!=0)
-								{
-									conflict_et++;
-								}
-							}
-							//se ? minore il numero di esami in conflitto e lo spostamento non contrasta con TL lo faccio
-							if(conflict_e < min && controlloTL(e,t,ts))
+							if(conflicts[e.getIdExam()-1][ets.getIdExam()-1]!=0)
 							{
-								min = conflict_e;
-								exam_spostato = e;
-								time_spostato = ts;
+								conflict_e++;
 							}
-							//se ? minore il numero di esami in conflitto e lo spostamento non contrasta con TL lo faccio
-							if(conflict_et < min && controlloTL(et,t,ts))
+							if(conflicts[et.getIdExam()-1][ets.getIdExam()-1]!=0)
 							{
-								min = conflict_et;
-								exam_spostato = et;
-								time_spostato = ts;
+								conflict_et++;
 							}
+							
+						}
+						//se è minore il numero di esami in conflitto e lo spostamento non contrasta con TL lo faccio
+						if(conflict_e < min && controlloTL(e,t,ts))
+						{
+							min = conflict_e;
+							exam_spostato = exams.get(e.getIdExam());
+							time_spostato = timeslots.get(ts.getIdTimeSlot());
+							
+							//	System.out.println(exam_spostato.toString());
+							//	System.out.println(time_spostato.toString());
+						}
+						//se è minore il numero di esami in conflitto e lo spostamento non contrasta con TL lo faccio
+						if(conflict_et < min && controlloTL(et,t,ts))
+						{
+							min = conflict_et;
+							exam_spostato = exams.get(et.getIdExam());
+							time_spostato = timeslots.get(ts.getIdTimeSlot());
+							
+							   // System.out.println(exam_spostato.toString());
+							   // System.out.println(time_spostato.toString());
+						}
 						}	
 					}
 				}
 			}
+							
 			t.addExamToTimeslot(e);
 			e.setTimeSlot(t);
+			
 			if(time_spostato != null)
 			{
 				//System.out.println("spostato");
 				//System.out.println(exam_spostato);
 				//System.out.println(time_spostato);
 				//System.out.println(min);
+				//System.out.println(t.toString() + " " + time_spostato.toString() + " " + exam_spostato.getIdExam());
+				Graphs.addEdgeWithVertices(grafo, t, time_spostato, (double)exam_spostato.getIdExam());
+				//System.out.println(grafo.getEdge(t, time_spostato).toString());
 				t.removeExamFromTimeslot(exam_spostato);
-				if(min>0){
 					
-					ACP(exam_spostato, time_spostato, listaT);
-				}
-				else{
-					
-					exam_spostato.setTimeSlot(time_spostato);
-					time_spostato.addExamToTimeslot(exam_spostato);
-				}
+					if(min == 0){
+						
+						exam_spostato.setTimeSlot(time_spostato);
+						time_spostato.addExamToTimeslot(exam_spostato);
+						
+						controllo_conflitti();
+					}
+					else{
+						ACP(exam_spostato, time_spostato, listaT);
+					}
 				
 			}
 		
 	}
 	
 
-	private static boolean controlloTL(Exam e, Timeslot t, Timeslot ts){
+	private void controllo_conflitti() {
 		
-		if(e.getTime().containsEdge(ts, t))
-		{
-			//System.out.println("controllo false");
-			return false;
+		Exam e = null;
+		Timeslot te = null;
+		for (Timeslot t : listaT){
+			
+			for(Exam e1 : t.getExamsOfTimeslot()){
+				for(Exam e2 : t.getExamsOfTimeslot()){
+					if(!e1.equals(e2) && conflicts[e1.getIdExam()-1][e2.getIdExam()-1] != 0){
+						e = exams.get(e1.getIdExam());
+						te = timeslots.get(t.getIdTimeSlot());
+						break;
+						
+					}
+				}
+			}
 		}
+		
+		if (e != null){
+			
+			te.removeExamFromTimeslot(e);
+			ACP(e, te, listaT);
+		}
+		
+	}
+
+	private boolean controlloTL(Exam e, Timeslot t, Timeslot ts){
+		
+        if(grafo.containsEdge(t, ts)){
+			
+			for(DefaultWeightedEdge d :grafo.getAllEdges(t, ts)){
+				
+				if(grafo.getEdgeWeight(d)==(double)e.getIdExam()){
+					return false;
+				}
+			}
+		}
+  
 		//System.out.println("controllo true");
 		return true;
 	}
@@ -292,7 +258,6 @@ public class ExaminationTimetabling {
 		initializeConflictsMatrix();
 		readFileSlo(fileSlo);
 		readFileStu(fileStu);
-
 		/* Print the Map of exams
 		 * for (Map.Entry<Integer, Exam> entry : exams.entrySet())
 		    System.out.println(entry.getKey() + " " + entry.getValue().getEnrolledStudents());
@@ -323,10 +288,11 @@ public class ExaminationTimetabling {
 				enStudents = s.nextInt();
 				Exam e = new Exam(idExam, enStudents);
 				exams.put(idExam, e);
+				listaE.add(e);
 				s.close();
 			}
 		} catch(IOException e) {System.out.println(e.getMessage());}
-		//listaE = new ArrayList<>(exams.values());
+		
 	}
 	
 	private void initializeConflictsMatrix() {
@@ -344,23 +310,21 @@ public class ExaminationTimetabling {
 			totalTimeslots = Integer.parseInt(line);
 		} catch(IOException e) {System.out.println(e.getMessage());}
 		// I fill the Map with the timeslots
-		//listaT = new ArrayList<>();
+		listaT = new ArrayList<>();
 		for(int i=1; i<=totalTimeslots; i++)
 		{
 			Timeslot t = new Timeslot(i);
 			 timeslots.put(i, t);
-			// listaT.add(t);
+			 listaT.add(t);
 		}
 		
-		for (Map.Entry<Integer, Exam> entry : exams.entrySet())
-	    {
-	    	entry.getValue().addGrafo(new ArrayList<>(timeslots.values()));
-	    }
+		Graphs.addAllVertices(grafo, listaT);
 	}
-
+	
 	private void readFileStu(String filename) {
 		try (BufferedReader in = new BufferedReader(new FileReader(filename)))
 		{
+			numberOfStudent = 0;
 			List<Integer> tempList = new ArrayList<Integer>();
 			String line, lastStudent, currentStudent;
 			lastStudent = "";
@@ -375,9 +339,9 @@ public class ExaminationTimetabling {
 				}
 				else
 				{
-				    numberOfStudent++;
 					fillConflictsMatrix(tempList);
 					tempList.clear();
+					numberOfStudent++;
 					tempList.add(s.nextInt());
 					lastStudent = currentStudent;
 				}
@@ -401,30 +365,217 @@ public class ExaminationTimetabling {
 	}
 
 	public void print() {
-		// TODO Auto-generated method stub
-		for (Map.Entry<Integer, Timeslot> entry : timeslots.entrySet())
-		{
-			System.out.println(entry.getValue().getExamsOfTimeslot().toString());
+		List<Exam> lista_c = new ArrayList<>();
+		
+		for (Timeslot t : listaT){
+			System.out.println(t.getExamsOfTimeslot().toString());
+			for(Exam e1: t.getExamsOfTimeslot()){
+				for(Exam e2: t.getExamsOfTimeslot()){
+					if(!e1.equals(e2)){
+						if(conflicts[e1.getIdExam()-1][e2.getIdExam()-1]!=0){
+							System.out.println("Studente/i in comune tra gli esami " + e1.getIdExam() + " "+ e2.getIdExam()+ " (valore conflicts: "+conflicts[e1.getIdExam()-1][e2.getIdExam()-1]+") in " +t.toString());
+						}
+					}
+				}
+			}
 		}
-
+		for(Exam e : listaE){
+			boolean p = false;
+			for (Timeslot t: listaT){
+				if(t.getExamsOfTimeslot().contains(e)){
+					if(p){
+						System.out.println(e.toString()+" già presente");
+					}
+					p = true;
+				}
+			}
+			if(!p){
+				lista_c.add(e);
+			}
+		}
+		System.out.println("lista esami non inseriti nei timeslots: " +lista_c.toString());
+		
 	}
-    public void printExamMap(){
-	    System.out.println("Exam map:");
-        for(Map.Entry<Integer, Exam> entry : exams.entrySet()){
-            System.out.println(entry.getValue().toString());
-        }
-        System.out.println("List map:");
-		for (Map.Entry<Integer, Exam> entry : exams.entrySet())
+
+	public int ObjFuncFirstSolution() {
+		int totalUnfeasibility=0;
+		int idE1, idE2;
+		List<Exam> listClone;
+		
+		for(Timeslot t : timeslots.values())
 		{
-			System.out.println(entry.getValue().toString());
+			listClone = t.getExamsOfTimeslot();
+			for(int i=0; i<listClone.size()-1; i++)
+			{
+				for(int j=i+1; j<listClone.size(); j++)
+				{
+					idE1 = listClone.get(i).getIdExam();
+					idE2 = listClone.get(j).getIdExam();
+					if(conflicts[idE1-1][idE2-1] != 0)
+					{
+						totalUnfeasibility++;
+					}
+				}
+			}
 		}
+		
+		return totalUnfeasibility;
+	}
+	
+	public void preTS(){
+		
+		int iterazioni = listaT.size();
+		
+		for(Timeslot t : listaT){
+			for(DefaultWeightedEdge d : grafo.edgesOf(t)){
+				grafo.removeEdge(d);
+			}
+		}
+		
+		TS(iterazioni);
+	}
+	
+	private void TS(int iterazioni){
+		
+		double minPenalty = Double.MAX_VALUE;
+		double Penalty = this.LocaltotalPenalty;
+		Exam exam_spostato = null;
+		Timeslot time_spostato = null;
+		boolean p = true;
+		boolean noTL = false;
+		
+		if(iterazioni==0){
+			System.out.println("Finito");
+		}
+		else{
+		for (Exam e : listaE){
+			for(Timeslot t: listaT){
+				p = true;
+				if(!t.getExamsOfTimeslot().contains(e)){
+					for(Exam ep : t.getExamsOfTimeslot()){
+						
+						if(conflicts[ep.getIdExam()-1][e.getIdExam()-1] != 0){
+							p = false;
+							break;
+						}
+					
+					}
+				}
+				else{
+					p = false;
+				}
+				if(p ){
 
-    }
-    public void printTimeSlotMap(){
-        for(Map.Entry<Integer, Timeslot> entry : timeslots.entrySet()){
-            System.out.println(entry.getValue().toString());
-        }
-    }
+					Penalty = Penalty - CalculateSinglePenalty(e, e.getTimeSlot());
+					Penalty = Penalty + CalculateSinglePenalty(e, t);
+					//System.out.println(Penalty);
+					if(Penalty < minPenalty && controlloTS(e, e.getTimeSlot(),t)){
+						
+						minPenalty = Penalty;
+						exam_spostato = exams.get(e.getIdExam());
+						time_spostato = timeslots.get(t.getIdTimeSlot());
+						noTL = false;
+					}
+					else{
+						if (Penalty < minPenalty && Penalty < this.totalPenalty){
+							
+							minPenalty = Penalty;
+							exam_spostato = exams.get(e.getIdExam());
+							time_spostato = timeslots.get(t.getIdTimeSlot());
+							noTL = true;
+						}
+					}
+			    }
+			
+			}
+		}
+		if(time_spostato != null){
+			
+			//System.out.println(grafo.toString());
+			//System.out.println(exam_spostato.getTimeSlot().toString());
+			//System.out.println(time_spostato.toString());
+			//System.out.println(exam_spostato.toString());
+			if(!noTL){
+				Graphs.addEdge(grafo, exam_spostato.getTimeSlot(), time_spostato, (double)exam_spostato.getIdExam());
+			}
+			
+			exam_spostato.getTimeSlot().removeExamFromTimeslot(exam_spostato);
+			time_spostato.addExamToTimeslot(exam_spostato);
+			exam_spostato.setTimeSlot(time_spostato);
+			LocaltotalPenalty = LocaltotalPenalty + minPenalty; 
+			
+			if(ObjFuncFirstSolution()==0){
+				
+				if(LocaltotalPenalty < totalPenalty){
+					
+					//System.out.println("Spostato "+ exam_spostato.toString());
+					//printare il file
+					totalPenalty = LocaltotalPenalty;
+					
+				}
+				//System.out.println(iterazioni);
+				//iterazioni--;
+				TS(iterazioni);
+				
+			}
+			
+			
+		}	
+	}
+	}
+	
+	private boolean controlloTS(Exam e, Timeslot ts, Timeslot t) {
+		 
+		if(grafo.containsEdge(t, ts)){
+				
+				for(DefaultWeightedEdge d :grafo.getAllEdges(t, ts)){
+					
+					if(grafo.getEdgeWeight(d)==(double)e.getIdExam()){
+						return false;
+					}
+				}
+			}
+		
+		return true;
+	}
+
+	private double CalculateSinglePenalty(Exam e, Timeslot t) {
+		
+		 int t2=0, n;
+		 double total = 0, penalty;
+		 int[] power = {1, 2, 4, 8, 16};
+
+		     for(Exam e2 : listaE){
+		         if( !e.equals(e2) ){
+		            	 if(conflicts[e.getIdExam()-1][e2.getIdExam()-1] != 0){
+		            		 
+		            		 t2 = e2.getTimeSlot().getIdTimeSlot();
+		            		 
+		            		 if(t.getIdTimeSlot() > t2){
+		            			 
+		            			 n = t.getIdTimeSlot() - t2; 
+	                        }
+		            		 else{
+		            			 
+		            			 n = t2 - t.getIdTimeSlot();
+		            		 }
+		            		 //System.out.println(n);
+
+	                        if ( n > 5){
+	                            penalty = 0;
+	                        }
+	                        else{
+	                            penalty = conflicts[e.getIdExam()-1][e2.getIdExam()-1] * power[5-n];
+	                            //System.out.println(penalty);
+	                        }
+	                       
+	                        total += penalty;
+	                    }
+	            }
+
+	        }
+	        return total;
+		
+	}
+	
 }
-
-

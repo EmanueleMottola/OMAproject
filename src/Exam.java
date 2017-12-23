@@ -1,21 +1,15 @@
-import java.util.List;
-
-import org.jgrapht.Graphs;
-import org.jgrapht.graph.DefaultEdge;
-import org.jgrapht.graph.SimpleDirectedGraph;
+package assignment;
 
 public class Exam {
 	private int idExam;
 	private int enrolledStudents;
 	private Timeslot assignedTimeSlot;
-	
-	private SimpleDirectedGraph<Timeslot, DefaultEdge> time;
+
 	
 	public Exam(int idExam, int enrolledStudents) {
 		this.idExam = idExam;
 		this.enrolledStudents = enrolledStudents;
 		this.assignedTimeSlot = null;
-		this.time =  new SimpleDirectedGraph<Timeslot, DefaultEdge>(DefaultEdge.class);
 	}
 	
 	public int getIdExam() {
@@ -62,23 +56,6 @@ public class Exam {
 		return true;
 	}
 	
-	/**
-	 * @return the tot_timeslot
-	 */
-	public void addGrafo(List<Timeslot> slot) {
-		// TODO Auto-generated method stub
-		Graphs.addAllVertices(time, slot);
-	}
-	/**
-	 * @return the time
-	 */
-	public SimpleDirectedGraph<Timeslot, DefaultEdge> getTime() {
-		return time;
-	}
-	public void setEdge(Timeslot t1, Timeslot t2) {
-		// TODO Auto-generated method stub
-		this.time.addEdge(t1, t2);
-	}
 
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
@@ -87,5 +64,7 @@ public class Exam {
 	public String toString() {
 		return "Exam " + idExam;
 	}
+	
+	
 
 }

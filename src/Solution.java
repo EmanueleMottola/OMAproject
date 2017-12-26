@@ -50,7 +50,7 @@ public class Solution {
     }
 
 
-    public Map<Integer, Timeslot> move(){
+    public Map<Integer, Timeslot> move(int [][] conflicts){
 
         Map<Integer, Timeslot> m = new LinkedHashMap<>(currentSolution);
         int max = Integer.MIN_VALUE;
@@ -84,7 +84,7 @@ public class Solution {
 
         int conta=0;
         int r = (int) ((Math.random() % currentSolution.size()) + 1);
-        while( (r == t_selected) && (conta < currentSolution.size() * 2) && (checkconflict(e_selected, m.get(r))) ){
+        while( (r == t_selected) && (conta < currentSolution.size() * 2) && (checkconflict(conflicts ,e_selected, m.get(r))) ){
             r = (int) ((Math.random() % currentSolution.size()) + 1);
             conta++;
         }
@@ -94,5 +94,12 @@ public class Solution {
         return m;
     }
 
+    private boolean checkconflict(int[][] conflicts, Exam e, Timeslot t){
 
+        for(Exam et : t.getExamsOfTimeslot()){
+            if(conflicts[et.getIdExam()-1][e.getIdExam()-1] != 0)
+                return true;
+        }
+        return false;
+    }
 }

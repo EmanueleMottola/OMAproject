@@ -1,13 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="78008f53-192e-4eda-8c06-96f64e7d02e6" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/out/production/OMA/MyMoveManager.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/out/production/OMA/MySwapMove.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/Exam.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/ExaminationTimetabling.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/Timeslot.java" afterPath="" />
+    <list default="true" id="78008f53-192e-4eda-8c06-96f64e7d02e6" name="Default" comment="Solution class added">
+      <change beforePath="" afterPath="$PROJECT_DIR$/out/production/OMA/EtpMain.class" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/out/production/OMA/Exam.class" afterPath="$PROJECT_DIR$/out/production/OMA/Exam.class" />
+      <change beforePath="$PROJECT_DIR$/out/production/OMA/ExaminationTimetabling.class" afterPath="$PROJECT_DIR$/out/production/OMA/ExaminationTimetabling.class" />
+      <change beforePath="$PROJECT_DIR$/out/production/OMA/Main.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/out/production/OMA/Timeslot.class" afterPath="$PROJECT_DIR$/out/production/OMA/Timeslot.class" />
+      <change beforePath="$PROJECT_DIR$/src/EtpMain.java" afterPath="$PROJECT_DIR$/src/EtpMain.java" />
+      <change beforePath="$PROJECT_DIR$/src/Exam.java" afterPath="$PROJECT_DIR$/src/Exam.java" />
+      <change beforePath="$PROJECT_DIR$/src/ExaminationTimetabling.java" afterPath="$PROJECT_DIR$/src/ExaminationTimetabling.java" />
+      <change beforePath="$PROJECT_DIR$/src/Solution.java" afterPath="$PROJECT_DIR$/src/Solution.java" />
+      <change beforePath="$PROJECT_DIR$/src/Timeslot.java" afterPath="$PROJECT_DIR$/src/Timeslot.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -18,7 +23,107 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="EtpMain.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/EtpMain.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="288">
+              <caret line="16" column="0" lean-forward="false" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Exam.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Exam.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1170">
+              <caret line="73" column="35" lean-forward="false" selection-start-line="73" selection-start-column="35" selection-end-line="73" selection-end-column="35" />
+              <folding>
+                <element signature="e#318#319#0" expanded="true" />
+                <element signature="e#338#339#0" expanded="true" />
+                <element signature="e#1252#1253#0" expanded="true" />
+                <element signature="e#1278#1279#0" expanded="true" />
+                <element signature="e#1328#1329#0" expanded="true" />
+                <element signature="e#1367#1368#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ExaminationTimetabling.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/ExaminationTimetabling.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="65">
+              <caret line="30" column="4" lean-forward="true" selection-start-line="30" selection-start-column="4" selection-end-line="30" selection-end-column="4" />
+              <folding>
+                <element signature="method#CalculatePenalty#0;class#ExaminationTimetabling#0" expanded="false" />
+                <element signature="method#preACP#0;class#ExaminationTimetabling#0" expanded="false" />
+                <element signature="method#ACP#0;class#ExaminationTimetabling#0" expanded="false" />
+                <element signature="method#controllo_conflitti#0;class#ExaminationTimetabling#0" expanded="false" />
+                <element signature="method#controlloTL#0;class#ExaminationTimetabling#0" expanded="false" />
+                <element signature="method#fillData#0;class#ExaminationTimetabling#0" expanded="false" />
+                <element signature="method#readFileExm#0;class#ExaminationTimetabling#0" expanded="false" />
+                <element signature="method#initializeConflictsMatrix#0;class#ExaminationTimetabling#0" expanded="false" />
+                <element signature="method#readFileSlo#0;class#ExaminationTimetabling#0" expanded="false" />
+                <element signature="method#readFileStu#0;class#ExaminationTimetabling#0" expanded="false" />
+                <element signature="e#10608#10617#0" expanded="true" />
+                <element signature="method#fillConflictsMatrix#0;class#ExaminationTimetabling#0" expanded="false" />
+                <element signature="method#print#0;class#ExaminationTimetabling#0" expanded="false" />
+                <element signature="method#ObjFuncFirstSolution#0;class#ExaminationTimetabling#0" expanded="false" />
+                <element signature="method#preTS#0;class#ExaminationTimetabling#0" expanded="false" />
+                <element signature="method#TS#0;class#ExaminationTimetabling#0" expanded="false" />
+                <element signature="method#controlloTS#0;class#ExaminationTimetabling#0" expanded="false" />
+                <element signature="method#CalculateSinglePenalty#0;class#ExaminationTimetabling#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Timeslot.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Timeslot.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="216">
+              <caret line="13" column="41" lean-forward="false" selection-start-line="13" selection-start-column="41" selection-end-line="13" selection-end-column="41" />
+              <folding>
+                <element signature="e#207#208#0" expanded="true" />
+                <element signature="e#239#240#0" expanded="true" />
+                <element signature="e#301#302#0" expanded="true" />
+                <element signature="e#352#353#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Solution.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Solution.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="488">
+              <caret line="86" column="101" lean-forward="false" selection-start-line="86" selection-start-column="101" selection-end-line="86" selection-end-column="101" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#600#601#0" expanded="true" />
+                <element signature="e#635#636#0" expanded="true" />
+                <element signature="e#707#708#0" expanded="true" />
+                <element signature="e#755#756#0" expanded="true" />
+                <element signature="e#813#814#0" expanded="true" />
+                <element signature="e#851#852#0" expanded="true" />
+                <element signature="e#929#930#0" expanded="true" />
+                <element signature="e#983#984#0" expanded="true" />
+                <element signature="e#1040#1041#0" expanded="true" />
+                <element signature="e#1073#1074#0" expanded="true" />
+                <element signature="e#1132#1133#0" expanded="true" />
+                <element signature="e#1165#1166#0" expanded="true" />
+                <element signature="e#1209#1210#0" expanded="true" />
+                <element signature="e#1237#1238#0" expanded="true" />
+                <element signature="e#1291#1292#0" expanded="true" />
+                <element signature="e#1325#1326#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -42,15 +147,16 @@
         <option value="$PROJECT_DIR$/src/Student.java" />
         <option value="$PROJECT_DIR$/src/Conflitto.java" />
         <option value="$PROJECT_DIR$/src/Penalty.java" />
-        <option value="$PROJECT_DIR$/src/EtpMain.java" />
-        <option value="$PROJECT_DIR$/src/Timeslot.java" />
         <option value="$PROJECT_DIR$/src/MyGreedyStartSolution.java" />
         <option value="$PROJECT_DIR$/src/MySolution.java" />
         <option value="$PROJECT_DIR$/src/MySwapMove.java" />
         <option value="$PROJECT_DIR$/src/MyObjectiveFunction.java" />
-        <option value="$PROJECT_DIR$/src/Exam.java" />
-        <option value="$PROJECT_DIR$/src/ExaminationTimetabling.java" />
         <option value="$PROJECT_DIR$/src/Main.java" />
+        <option value="$PROJECT_DIR$/src/Timeslot.java" />
+        <option value="$PROJECT_DIR$/src/Exam.java" />
+        <option value="$PROJECT_DIR$/src/EtpMain.java" />
+        <option value="$PROJECT_DIR$/src/Solution.java" />
+        <option value="$PROJECT_DIR$/src/ExaminationTimetabling.java" />
       </list>
     </option>
   </component>
@@ -61,10 +167,10 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="253" />
-    <option name="y" value="252" />
-    <option name="width" value="1293" />
-    <option name="height" value="732" />
+    <option name="x" value="53" />
+    <option name="y" value="-28" />
+    <option name="width" value="1313" />
+    <option name="height" value="796" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -83,8 +189,6 @@
     </navigator>
     <panes>
       <pane id="Scope" />
-      <pane id="AndroidView" />
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -103,11 +207,18 @@
               <item name="out" type="462c0819:PsiDirectoryNode" />
               <item name="production" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="OMA" type="b2602c69:ProjectViewProjectNode" />
+              <item name="OMA" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
       <pane id="PackagesPane" />
+      <pane id="Scratches" />
+      <pane id="AndroidView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -121,6 +232,7 @@
     <property name="Downloaded.Files.Path.Enabled" value="false" />
     <property name="Repository.Attach.JavaDocs" value="false" />
     <property name="Repository.Attach.Sources" value="false" />
+    <property name="SearchEverywhereHistoryKey" value="preTS&#9;PSI&#9;JAVA://ExaminationTimetabling#preTS&#10;preTs&#9;PSI&#9;JAVA://ExaminationTimetabling#preTS&#10;cal&#9;PSI&#9;JAVA://ExaminationTimetabling#CalculatePenalty" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -137,12 +249,12 @@
   <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <option name="MAIN_CLASS_NAME" value="Main" />
+      <option name="MAIN_CLASS_NAME" value="EtpMain" />
       <option name="VM_PARAMETERS" value="" />
       <option name="PROGRAM_PARAMETERS" value="" />
       <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" value="" />
+      <option name="ALTERNATIVE_JRE_PATH" />
       <option name="ENABLE_SWING_INSPECTOR" value="false" />
       <option name="ENV_VARIABLES" />
       <option name="PASS_PARENT_ENVS" value="true" />
@@ -202,15 +314,25 @@
       <workItem from="1513657412047" duration="15000" />
       <workItem from="1513787867532" duration="6614000" />
       <workItem from="1513845133898" duration="4482000" />
-      <workItem from="1514037456830" duration="8797000" />
+      <workItem from="1514037456830" duration="10296000" />
+      <workItem from="1514111583603" duration="16393000" />
     </task>
+    <task id="LOCAL-00001" summary="Solution class added">
+      <created>1514304585723</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1514304585723</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="70724000" />
+    <option name="totallyTimeSpent" value="88616000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="253" y="252" width="1315" height="780" extended-state="6" />
+    <frame x="53" y="-4" width="1313" height="772" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -221,7 +343,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32934132" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.46846846" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.46846846" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -247,41 +369,27 @@
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Solution class added" />
+    <option name="LAST_COMMIT_MESSAGE" value="Solution class added" />
+  </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="3" />
+      <option name="time" value="5" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/instance01.slo">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Exam.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="54">
-          <caret line="7" column="23" lean-forward="false" selection-start-line="7" selection-start-column="23" selection-end-line="7" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ExaminationTimetabling.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="8" column="37" lean-forward="false" selection-start-line="8" selection-start-column="37" selection-end-line="8" selection-end-column="37" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Timeslot.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="162">
           <caret line="10" column="37" lean-forward="false" selection-start-line="10" selection-start-column="37" selection-end-line="10" selection-end-column="37" />
-          <folding />
+          <folding>
+            <element signature="e#207#208#0" expanded="true" />
+            <element signature="e#239#240#0" expanded="true" />
+            <element signature="e#301#302#0" expanded="true" />
+            <element signature="e#352#353#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -323,14 +431,7 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Main.java" />
-    <entry file="file://$PROJECT_DIR$/src/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="7" column="0" lean-forward="false" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Main.java" />
     <entry file="file://$PROJECT_DIR$/timeslots.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -374,43 +475,102 @@
     <entry file="file://$PROJECT_DIR$/src/MyGreedyStartSolution.java" />
     <entry file="file://$PROJECT_DIR$/src/MySwapMove.java" />
     <entry file="file://$PROJECT_DIR$/src/MyMoveManager.java" />
-    <entry file="file://$PROJECT_DIR$/src/Timeslot.java">
+    <entry file="file://$PROJECT_DIR$/src/MyObjectiveFunction.java" />
+    <entry file="file://$PROJECT_DIR$/src/Main.java" />
+    <entry file="jar:///usr/lib/jvm/jdk1.8.0/jre/lib/rt.jar!/sun/text/normalizer/NormalizerBase.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="918">
-          <caret line="60" column="0" lean-forward="false" selection-start-line="60" selection-start-column="0" selection-end-line="60" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/MyObjectiveFunction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="8" column="19" lean-forward="false" selection-start-line="8" selection-start-column="19" selection-end-line="8" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="14" column="5" lean-forward="true" selection-start-line="14" selection-start-column="5" selection-end-line="14" selection-end-column="5" />
+        <state relative-caret-position="212">
+          <caret line="135" column="31" lean-forward="false" selection-start-line="135" selection-start-column="31" selection-end-line="135" selection-end-column="31" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Exam.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="54">
-          <caret line="14" column="34" lean-forward="false" selection-start-line="14" selection-start-column="34" selection-end-line="14" selection-end-column="34" />
+        <state relative-caret-position="1170">
+          <caret line="73" column="35" lean-forward="false" selection-start-line="73" selection-start-column="35" selection-end-line="73" selection-end-column="35" />
+          <folding>
+            <element signature="e#318#319#0" expanded="true" />
+            <element signature="e#338#339#0" expanded="true" />
+            <element signature="e#1252#1253#0" expanded="true" />
+            <element signature="e#1278#1279#0" expanded="true" />
+            <element signature="e#1328#1329#0" expanded="true" />
+            <element signature="e#1367#1368#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/EtpMain.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="288">
+          <caret line="16" column="0" lean-forward="false" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Timeslot.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="13" column="41" lean-forward="false" selection-start-line="13" selection-start-column="41" selection-end-line="13" selection-end-column="41" />
+          <folding>
+            <element signature="e#207#208#0" expanded="true" />
+            <element signature="e#239#240#0" expanded="true" />
+            <element signature="e#301#302#0" expanded="true" />
+            <element signature="e#352#353#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Solution.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="488">
+          <caret line="86" column="101" lean-forward="false" selection-start-line="86" selection-start-column="101" selection-end-line="86" selection-end-column="101" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#600#601#0" expanded="true" />
+            <element signature="e#635#636#0" expanded="true" />
+            <element signature="e#707#708#0" expanded="true" />
+            <element signature="e#755#756#0" expanded="true" />
+            <element signature="e#813#814#0" expanded="true" />
+            <element signature="e#851#852#0" expanded="true" />
+            <element signature="e#929#930#0" expanded="true" />
+            <element signature="e#983#984#0" expanded="true" />
+            <element signature="e#1040#1041#0" expanded="true" />
+            <element signature="e#1073#1074#0" expanded="true" />
+            <element signature="e#1132#1133#0" expanded="true" />
+            <element signature="e#1165#1166#0" expanded="true" />
+            <element signature="e#1209#1210#0" expanded="true" />
+            <element signature="e#1237#1238#0" expanded="true" />
+            <element signature="e#1291#1292#0" expanded="true" />
+            <element signature="e#1325#1326#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ExaminationTimetabling.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="45" column="5" lean-forward="true" selection-start-line="45" selection-start-column="5" selection-end-line="45" selection-end-column="5" />
-          <folding />
+        <state relative-caret-position="65">
+          <caret line="30" column="4" lean-forward="true" selection-start-line="30" selection-start-column="4" selection-end-line="30" selection-end-column="4" />
+          <folding>
+            <element signature="method#CalculatePenalty#0;class#ExaminationTimetabling#0" expanded="false" />
+            <element signature="method#preACP#0;class#ExaminationTimetabling#0" expanded="false" />
+            <element signature="method#ACP#0;class#ExaminationTimetabling#0" expanded="false" />
+            <element signature="method#controllo_conflitti#0;class#ExaminationTimetabling#0" expanded="false" />
+            <element signature="method#controlloTL#0;class#ExaminationTimetabling#0" expanded="false" />
+            <element signature="method#fillData#0;class#ExaminationTimetabling#0" expanded="false" />
+            <element signature="method#readFileExm#0;class#ExaminationTimetabling#0" expanded="false" />
+            <element signature="method#initializeConflictsMatrix#0;class#ExaminationTimetabling#0" expanded="false" />
+            <element signature="method#readFileSlo#0;class#ExaminationTimetabling#0" expanded="false" />
+            <element signature="method#readFileStu#0;class#ExaminationTimetabling#0" expanded="false" />
+            <element signature="e#10608#10617#0" expanded="true" />
+            <element signature="method#fillConflictsMatrix#0;class#ExaminationTimetabling#0" expanded="false" />
+            <element signature="method#print#0;class#ExaminationTimetabling#0" expanded="false" />
+            <element signature="method#ObjFuncFirstSolution#0;class#ExaminationTimetabling#0" expanded="false" />
+            <element signature="method#preTS#0;class#ExaminationTimetabling#0" expanded="false" />
+            <element signature="method#TS#0;class#ExaminationTimetabling#0" expanded="false" />
+            <element signature="method#controlloTS#0;class#ExaminationTimetabling#0" expanded="false" />
+            <element signature="method#CalculateSinglePenalty#0;class#ExaminationTimetabling#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>

@@ -1,4 +1,3 @@
-package assignment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,7 +5,16 @@ import java.util.List;
 public class Timeslot {
 	private int idTimeslot;
 	private List<Exam> examsTimeslot;
-	
+	private int penaltyPerTimeslot;
+
+	public int getPenaltyPerTimeslot() {
+		return penaltyPerTimeslot;
+	}
+
+	public void setPenaltyPerTimeslot(int penaltyPerTimeslot) {
+		this.penaltyPerTimeslot = penaltyPerTimeslot;
+	}
+
 	// Constructor
 	public Timeslot(int idTimeSlot) {
 		this.idTimeslot = idTimeSlot;

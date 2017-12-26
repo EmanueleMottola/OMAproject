@@ -5,15 +5,17 @@ public class TabuList {
 
     private LinkedList<Move> moves;
     private int dim;
+    private int dimMax;
 
-    public TabuList(int dim) {
+    public TabuList(int dimMax) {
         this.moves = new LinkedList<>();
-        this.dim = dim;
+        this.dim = 0;
+        this.dim = dimMax;
     }
 
     public boolean addTabuMove(int idExam, int idTimeslot){
         Move move = new Move(idExam, idTimeslot);
-        if(dim == 7){
+        if(dim == dimMax){
             this.moves.removeFirst();
             this.dim--;
         }

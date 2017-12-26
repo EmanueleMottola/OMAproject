@@ -9,12 +9,14 @@ public class Solution {
     private Map<Integer, Timeslot> currentSolution;
     private List<Map<Integer, Timeslot>> neighbours;
     private Map<Integer,Exam> exams;
+    private TabuList tabulist;
 
     public Solution() {
         this.bestSolution = new LinkedHashMap<>();
         this.currentSolution = new LinkedHashMap<>();
         this.neighbours = new ArrayList<>();
         this.exams = new LinkedHashMap<>();
+        this.tabulist = new TabuList(7);
     }
 
     public Map<Integer, Timeslot> getBestSolution() {
@@ -50,12 +52,12 @@ public class Solution {
     }
 
 
-    public void move(int [][] conflicts){
+    public void Neighbours(int [][] conflicts){
 
-            Map<Integer, Timeslot> m = new LinkedHashMap<>(currentSolution);
-            int max = Integer.MIN_VALUE;
-            Exam e_selected=null;
-            int t_selected=0;
+        Map<Integer, Timeslot> m = new LinkedHashMap<>(currentSolution);
+        int max = Integer.MIN_VALUE;
+        Exam e_selected=null;
+        int t_selected=0;
 
         for(int j=0; j<10; j++) {
             for (Map.Entry<Integer, Timeslot> entry : m.entrySet()) {
@@ -97,6 +99,10 @@ public class Solution {
         }
 
     }
+
+    /*implementare qui una funzione che serva per scegliere il miglior neighbour e ritorni una mossa da inserire
+    nella tabulist.
+     */
 
     public void clear(){
         this.neighbours.clear();

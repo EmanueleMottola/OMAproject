@@ -626,13 +626,16 @@ public class ExaminationTimetabling {
 	public void TabuSearch(){
 
 	    boolean stoppingCriteria = true;
+	    Move moveDone;
 
 	    solution.computePenaltyExam(conflicts);
 	    solution.setBestSolution(solution.getCurrentSolution());
 
 	    while(stoppingCriteria){
 	        solution.clear();
-	        solution.move(conflicts);
+	        solution.Neighbours(conflicts);
+	        moveDone = solution.move();
+
 
         }
     }

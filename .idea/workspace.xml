@@ -2,16 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="78008f53-192e-4eda-8c06-96f64e7d02e6" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/Move.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/TabuList.java" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/out/production/OMA/EtpMain.class" afterPath="$PROJECT_DIR$/out/production/OMA/EtpMain.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/OMA/Exam.class" afterPath="$PROJECT_DIR$/out/production/OMA/Exam.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/OMA/ExaminationTimetabling.class" afterPath="$PROJECT_DIR$/out/production/OMA/ExaminationTimetabling.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/OMA/Timeslot.class" afterPath="$PROJECT_DIR$/out/production/OMA/Timeslot.class" />
-      <change beforePath="$PROJECT_DIR$/src/EtpMain.java" afterPath="$PROJECT_DIR$/src/EtpMain.java" />
       <change beforePath="$PROJECT_DIR$/src/ExaminationTimetabling.java" afterPath="$PROJECT_DIR$/src/ExaminationTimetabling.java" />
       <change beforePath="$PROJECT_DIR$/src/Solution.java" afterPath="$PROJECT_DIR$/src/Solution.java" />
+      <change beforePath="$PROJECT_DIR$/src/TabuList.java" afterPath="$PROJECT_DIR$/src/TabuList.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -50,11 +44,26 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="Timeslot.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Timeslot.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="684">
+              <caret line="47" column="0" lean-forward="false" selection-start-line="47" selection-start-column="0" selection-end-line="47" selection-end-column="0" />
+              <folding>
+                <element signature="e#207#208#0" expanded="true" />
+                <element signature="e#239#240#0" expanded="true" />
+                <element signature="e#301#302#0" expanded="true" />
+                <element signature="e#352#353#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="ExaminationTimetabling.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ExaminationTimetabling.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="324">
-              <caret line="631" column="0" lean-forward="false" selection-start-line="631" selection-start-column="0" selection-end-line="631" selection-end-column="0" />
+            <state relative-caret-position="396">
+              <caret line="637" column="0" lean-forward="false" selection-start-line="637" selection-start-column="0" selection-end-line="637" selection-end-column="0" />
               <folding>
                 <element signature="method#CalculatePenalty#0;class#ExaminationTimetabling#0" expanded="false" />
                 <element signature="method#preACP#0;class#ExaminationTimetabling#0" expanded="false" />
@@ -79,15 +88,15 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TabuList.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="TabuList.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/TabuList.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="558">
-              <caret line="31" column="4" lean-forward="false" selection-start-line="31" selection-start-column="4" selection-end-line="31" selection-end-column="4" />
+            <state relative-caret-position="236">
+              <caret line="17" column="24" lean-forward="false" selection-start-line="17" selection-start-column="24" selection-end-line="17" selection-end-column="24" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#606#607#0" expanded="true" />
-                <element signature="e#651#652#0" expanded="true" />
+                <element signature="e#663#664#0" expanded="true" />
+                <element signature="e#708#709#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -112,46 +121,31 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Timeslot.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Timeslot.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="47" column="0" lean-forward="false" selection-start-line="47" selection-start-column="0" selection-end-line="47" selection-end-column="0" />
-              <folding>
-                <element signature="e#207#208#0" expanded="true" />
-                <element signature="e#239#240#0" expanded="true" />
-                <element signature="e#301#302#0" expanded="true" />
-                <element signature="e#352#353#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Solution.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Solution.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Solution.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-288">
-              <caret line="101" column="32" lean-forward="true" selection-start-line="101" selection-start-column="32" selection-end-line="101" selection-end-column="32" />
+            <state relative-caret-position="-390">
+              <caret line="18" column="40" lean-forward="false" selection-start-line="18" selection-start-column="40" selection-end-line="18" selection-end-column="40" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#600#601#0" expanded="true" />
-                <element signature="e#635#636#0" expanded="true" />
+                <element signature="e#672#673#0" expanded="true" />
                 <element signature="e#707#708#0" expanded="true" />
-                <element signature="e#755#756#0" expanded="true" />
-                <element signature="e#813#814#0" expanded="true" />
-                <element signature="e#851#852#0" expanded="true" />
-                <element signature="e#929#930#0" expanded="true" />
-                <element signature="e#983#984#0" expanded="true" />
-                <element signature="e#1040#1041#0" expanded="true" />
-                <element signature="e#1073#1074#0" expanded="true" />
-                <element signature="e#1132#1133#0" expanded="true" />
-                <element signature="e#1165#1166#0" expanded="true" />
-                <element signature="e#1209#1210#0" expanded="true" />
+                <element signature="e#779#780#0" expanded="true" />
+                <element signature="e#827#828#0" expanded="true" />
+                <element signature="e#885#886#0" expanded="true" />
+                <element signature="e#923#924#0" expanded="true" />
+                <element signature="e#1001#1002#0" expanded="true" />
+                <element signature="e#1055#1056#0" expanded="true" />
+                <element signature="e#1112#1113#0" expanded="true" />
+                <element signature="e#1145#1146#0" expanded="true" />
+                <element signature="e#1204#1205#0" expanded="true" />
                 <element signature="e#1237#1238#0" expanded="true" />
-                <element signature="e#1291#1292#0" expanded="true" />
-                <element signature="e#1325#1326#0" expanded="true" />
-                <element signature="e#2725#2726#0" expanded="true" />
-                <element signature="e#2764#2765#0" expanded="true" />
+                <element signature="e#1281#1282#0" expanded="true" />
+                <element signature="e#1309#1310#0" expanded="true" />
+                <element signature="e#1363#1364#0" expanded="true" />
+                <element signature="e#1397#1398#0" expanded="true" />
+                <element signature="e#2929#2930#0" expanded="true" />
+                <element signature="e#2968#2969#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -189,10 +183,10 @@
         <option value="$PROJECT_DIR$/src/Timeslot.java" />
         <option value="$PROJECT_DIR$/src/Exam.java" />
         <option value="$PROJECT_DIR$/src/EtpMain.java" />
-        <option value="$PROJECT_DIR$/src/Solution.java" />
-        <option value="$PROJECT_DIR$/src/ExaminationTimetabling.java" />
         <option value="$PROJECT_DIR$/src/Move.java" />
         <option value="$PROJECT_DIR$/src/TabuList.java" />
+        <option value="$PROJECT_DIR$/src/Solution.java" />
+        <option value="$PROJECT_DIR$/src/ExaminationTimetabling.java" />
       </list>
     </option>
   </component>
@@ -351,7 +345,7 @@
       <workItem from="1513787867532" duration="6614000" />
       <workItem from="1513845133898" duration="4482000" />
       <workItem from="1514037456830" duration="10296000" />
-      <workItem from="1514111583603" duration="22886000" />
+      <workItem from="1514111583603" duration="23913000" />
     </task>
     <task id="LOCAL-00001" summary="Solution class added">
       <created>1514304585723</created>
@@ -367,11 +361,18 @@
       <option name="project" value="LOCAL" />
       <updated>1514306591740</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Solution class added">
+      <created>1514318099270</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1514318099270</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="95109000" />
+    <option name="totallyTimeSpent" value="96136000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="53" y="-4" width="1313" height="772" extended-state="6" />
@@ -562,19 +563,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Timeslot.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="47" column="0" lean-forward="false" selection-start-line="47" selection-start-column="0" selection-end-line="47" selection-end-column="0" />
-          <folding>
-            <element signature="e#207#208#0" expanded="true" />
-            <element signature="e#239#240#0" expanded="true" />
-            <element signature="e#301#302#0" expanded="true" />
-            <element signature="e#352#353#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$USER_HOME$/Scaricati/assignment2/lib/jgrapht-core-0.9.0.jar!/org/jgrapht/graph/AbstractBaseGraph.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="124">
@@ -593,10 +581,40 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/Move.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="5" column="56" lean-forward="false" selection-start-line="5" selection-start-column="56" selection-end-line="5" selection-end-column="56" />
+          <folding>
+            <element signature="e#322#323#0" expanded="true" />
+            <element signature="e#355#356#0" expanded="true" />
+            <element signature="e#404#405#0" expanded="true" />
+            <element signature="e#448#449#0" expanded="true" />
+            <element signature="e#489#490#0" expanded="true" />
+            <element signature="e#529#530#0" expanded="true" />
+            <element signature="e#592#593#0" expanded="true" />
+            <element signature="e#650#651#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Timeslot.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="684">
+          <caret line="47" column="0" lean-forward="false" selection-start-line="47" selection-start-column="0" selection-end-line="47" selection-end-column="0" />
+          <folding>
+            <element signature="e#207#208#0" expanded="true" />
+            <element signature="e#239#240#0" expanded="true" />
+            <element signature="e#301#302#0" expanded="true" />
+            <element signature="e#352#353#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/ExaminationTimetabling.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="324">
-          <caret line="631" column="0" lean-forward="false" selection-start-line="631" selection-start-column="0" selection-end-line="631" selection-end-column="0" />
+        <state relative-caret-position="396">
+          <caret line="637" column="0" lean-forward="false" selection-start-line="637" selection-start-column="0" selection-end-line="637" selection-end-column="0" />
           <folding>
             <element signature="method#CalculatePenalty#0;class#ExaminationTimetabling#0" expanded="false" />
             <element signature="method#preACP#0;class#ExaminationTimetabling#0" expanded="false" />
@@ -620,59 +638,42 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Solution.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-288">
-          <caret line="101" column="32" lean-forward="true" selection-start-line="101" selection-start-column="32" selection-end-line="101" selection-end-column="32" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#600#601#0" expanded="true" />
-            <element signature="e#635#636#0" expanded="true" />
-            <element signature="e#707#708#0" expanded="true" />
-            <element signature="e#755#756#0" expanded="true" />
-            <element signature="e#813#814#0" expanded="true" />
-            <element signature="e#851#852#0" expanded="true" />
-            <element signature="e#929#930#0" expanded="true" />
-            <element signature="e#983#984#0" expanded="true" />
-            <element signature="e#1040#1041#0" expanded="true" />
-            <element signature="e#1073#1074#0" expanded="true" />
-            <element signature="e#1132#1133#0" expanded="true" />
-            <element signature="e#1165#1166#0" expanded="true" />
-            <element signature="e#1209#1210#0" expanded="true" />
-            <element signature="e#1237#1238#0" expanded="true" />
-            <element signature="e#1291#1292#0" expanded="true" />
-            <element signature="e#1325#1326#0" expanded="true" />
-            <element signature="e#2725#2726#0" expanded="true" />
-            <element signature="e#2764#2765#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Move.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="5" column="56" lean-forward="false" selection-start-line="5" selection-start-column="56" selection-end-line="5" selection-end-column="56" />
-          <folding>
-            <element signature="e#322#323#0" expanded="true" />
-            <element signature="e#355#356#0" expanded="true" />
-            <element signature="e#404#405#0" expanded="true" />
-            <element signature="e#448#449#0" expanded="true" />
-            <element signature="e#489#490#0" expanded="true" />
-            <element signature="e#529#530#0" expanded="true" />
-            <element signature="e#592#593#0" expanded="true" />
-            <element signature="e#650#651#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/TabuList.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="558">
-          <caret line="31" column="4" lean-forward="false" selection-start-line="31" selection-start-column="4" selection-end-line="31" selection-end-column="4" />
+        <state relative-caret-position="236">
+          <caret line="17" column="24" lean-forward="false" selection-start-line="17" selection-start-column="24" selection-end-line="17" selection-end-column="24" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#606#607#0" expanded="true" />
-            <element signature="e#651#652#0" expanded="true" />
+            <element signature="e#663#664#0" expanded="true" />
+            <element signature="e#708#709#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Solution.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-390">
+          <caret line="18" column="40" lean-forward="false" selection-start-line="18" selection-start-column="40" selection-end-line="18" selection-end-column="40" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#672#673#0" expanded="true" />
+            <element signature="e#707#708#0" expanded="true" />
+            <element signature="e#779#780#0" expanded="true" />
+            <element signature="e#827#828#0" expanded="true" />
+            <element signature="e#885#886#0" expanded="true" />
+            <element signature="e#923#924#0" expanded="true" />
+            <element signature="e#1001#1002#0" expanded="true" />
+            <element signature="e#1055#1056#0" expanded="true" />
+            <element signature="e#1112#1113#0" expanded="true" />
+            <element signature="e#1145#1146#0" expanded="true" />
+            <element signature="e#1204#1205#0" expanded="true" />
+            <element signature="e#1237#1238#0" expanded="true" />
+            <element signature="e#1281#1282#0" expanded="true" />
+            <element signature="e#1309#1310#0" expanded="true" />
+            <element signature="e#1363#1364#0" expanded="true" />
+            <element signature="e#1397#1398#0" expanded="true" />
+            <element signature="e#2929#2930#0" expanded="true" />
+            <element signature="e#2968#2969#0" expanded="true" />
           </folding>
         </state>
       </provider>

@@ -194,6 +194,7 @@ public class Solution {
         int penalty=0;
         Move move = null;
 
+
         for(Map.Entry<Move, Map<Integer, Timeslot>> m : neighbours.entrySet()){
             penalty=0;
             for(Map.Entry<Integer, Timeslot> t : m.getValue().entrySet()){

@@ -89,8 +89,8 @@
       <file leaf-file-name="Solution.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Solution.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="276">
-              <caret line="167" column="133" lean-forward="false" selection-start-line="167" selection-start-column="133" selection-end-line="167" selection-end-column="133" />
+            <state relative-caret-position="258">
+              <caret line="195" column="8" lean-forward="false" selection-start-line="195" selection-start-column="8" selection-end-line="195" selection-end-column="8" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#681#682#0" expanded="true" />
@@ -343,7 +343,7 @@
       <workItem from="1513787867532" duration="6614000" />
       <workItem from="1513845133898" duration="4482000" />
       <workItem from="1514037456830" duration="10296000" />
-      <workItem from="1514111583603" duration="28890000" />
+      <workItem from="1514111583603" duration="29433000" />
     </task>
     <task id="LOCAL-00001" summary="Solution class added">
       <created>1514304585723</created>
@@ -373,11 +373,25 @@
       <option name="project" value="LOCAL" />
       <updated>1514319126675</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Solution class added">
+      <created>1514378475886</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1514378475886</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Solution class added">
+      <created>1514378978517</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1514378978517</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="101113000" />
+    <option name="totallyTimeSpent" value="101656000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="53" y="-4" width="1313" height="772" extended-state="6" />
@@ -657,8 +671,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Solution.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="276">
-          <caret line="167" column="133" lean-forward="false" selection-start-line="167" selection-start-column="133" selection-end-line="167" selection-end-column="133" />
+        <state relative-caret-position="258">
+          <caret line="195" column="8" lean-forward="false" selection-start-line="195" selection-start-column="8" selection-end-line="195" selection-end-column="8" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#681#682#0" expanded="true" />

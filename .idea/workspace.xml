@@ -1,15 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="78008f53-192e-4eda-8c06-96f64e7d02e6" name="Default" comment="Tabulist done, move created and solution found.">
+    <list default="true" id="78008f53-192e-4eda-8c06-96f64e7d02e6" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/out/production/OMA/EtpMain.class" afterPath="$PROJECT_DIR$/out/production/OMA/EtpMain.class" />
       <change beforePath="$PROJECT_DIR$/out/production/OMA/ExaminationTimetabling.class" afterPath="$PROJECT_DIR$/out/production/OMA/ExaminationTimetabling.class" />
-      <change beforePath="$PROJECT_DIR$/src/EtpMain.java" afterPath="$PROJECT_DIR$/src/EtpMain.java" />
-      <change beforePath="$PROJECT_DIR$/src/ExaminationTimetabling.java" afterPath="$PROJECT_DIR$/src/ExaminationTimetabling.java" />
-      <change beforePath="$PROJECT_DIR$/src/Move.java" afterPath="$PROJECT_DIR$/src/Move.java" />
-      <change beforePath="$PROJECT_DIR$/src/Solution.java" afterPath="$PROJECT_DIR$/src/Solution.java" />
-      <change beforePath="$PROJECT_DIR$/src/TabuList.java" afterPath="$PROJECT_DIR$/src/TabuList.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -343,7 +338,7 @@
       <workItem from="1513845133898" duration="4482000" />
       <workItem from="1514037456830" duration="10296000" />
       <workItem from="1514111583603" duration="29529000" />
-      <workItem from="1514384120556" duration="12881000" />
+      <workItem from="1514384120556" duration="12998000" />
     </task>
     <task id="LOCAL-00001" summary="Solution class added">
       <created>1514304585723</created>
@@ -394,11 +389,18 @@
       <option name="project" value="LOCAL" />
       <updated>1514379071403</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Mettere a posto il loop">
+      <created>1514405030601</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1514405030601</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="114633000" />
+    <option name="totallyTimeSpent" value="114750000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="53" y="-28" width="1315" height="780" extended-state="6" />
@@ -442,7 +444,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Solution class added" />
     <MESSAGE value="Tabulist done, move created and solution found." />
-    <option name="LAST_COMMIT_MESSAGE" value="Tabulist done, move created and solution found." />
+    <MESSAGE value="Mettere a posto il loop" />
+    <option name="LAST_COMMIT_MESSAGE" value="Mettere a posto il loop" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

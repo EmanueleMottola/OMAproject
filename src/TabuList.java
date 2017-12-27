@@ -13,8 +13,7 @@ public class TabuList {
         this.dim = dimMax;
     }
 
-    public boolean addTabuMove(int idExam, int idTimeslot){
-        Move move = new Move(idExam, idTimeslot);
+    public boolean addTabuMove(Move move){
         if(dim == dimMax){
             this.moves.removeFirst();
             this.dim--;

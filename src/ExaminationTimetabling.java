@@ -351,7 +351,7 @@ public class ExaminationTimetabling {
 	
 	private void fillConflictsMatrix(List<Integer> tmp) {
 		int h, k;
-		System.out.println(tmp.size());
+		//System.out.println(tmp.size());
 		if(tmp.size() > 1)
 			for(int i=0; i<tmp.size()-1; i++)
 				for(int j=i+1; j<tmp.size(); j++)
@@ -626,17 +626,17 @@ public class ExaminationTimetabling {
 	public void TabuSearch(){
 
 	    boolean stoppingCriteria = true;
-	    Move moveDone;
+	    Move moveForbidden, moveDone=null;
+	    int stop = 0;
 
 	    solution.computePenaltyExam(conflicts);
 	    solution.setBestSolution(solution.getCurrentSolution());
 
-	    while(stoppingCriteria){
+	    for(;stop < 20 ; stop++){
 	        solution.clear();
-	        solution.Neighbours(conflicts);
-	        moveDone = solution.move();
-
-
+	        moveForbidden = solution.Neighbours(conflicts, moveDone);
+			solution.getTabulist().addTabuMove(moveForbidden);
+			System.out.println("sto girando");
         }
     }
 

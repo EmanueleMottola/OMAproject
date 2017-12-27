@@ -1,11 +1,11 @@
 public class Move {
 
-    private int examToMove; //the timeslot to be moved
-    private int timeslotForbidden; //the timeslot forbidden
+    private int examToMove; //the exam to be moved
+    private int timeslot; //the timeslot
 
     public Move(int examToMove, int timeslotForbidden) {
         this.examToMove = examToMove;
-        this.timeslotForbidden = timeslotForbidden;
+        this.timeslot = timeslotForbidden;
     }
 
     public int getExamToMove() {
@@ -16,11 +16,11 @@ public class Move {
         this.examToMove = examToMove;
     }
 
-    public int getTimeslotForbidden() {
-        return timeslotForbidden;
+    public int getTimeslot() {
+        return timeslot;
     }
 
-    public void setTimeslotForbidden(int timeslotForbidden) {
-        this.timeslotForbidden = timeslotForbidden;
+    public void setTimeslot(int timeslotForbidden) {
+        this.timeslot = timeslotForbidden;
     }
 }

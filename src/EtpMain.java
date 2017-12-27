@@ -3,8 +3,8 @@ public class EtpMain {
 
 	public static void main(String[] args) {
 		ExaminationTimetabling et = new ExaminationTimetabling();
-		et.fillData("instance01.exm", "instance01.slo", "instance01.stu");
-		//et.fillData("esami.txt", "timeslots.txt", "studenti.txt");
+		//et.fillData("instance01.exm", "instance01.slo", "instance01.stu");
+		et.fillData("esami.txt", "timeslots.txt", "studenti.txt");
 		et.preACP();
 		
 		et.print();
@@ -15,6 +15,7 @@ public class EtpMain {
 		et.print();
 		et.CalculatePenalty();
 
+		et.TabuSearch();
 	}
 
 }

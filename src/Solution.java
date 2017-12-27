@@ -6,6 +6,7 @@ import java.util.Map;
 public class Solution {
 
     private Map<Integer, Timeslot> bestSolution;
+    private int bestPenalty;
     private Map<Integer, Timeslot> currentSolution;
     private Map<Move, Map<Integer, Timeslot>> neighbours;
     private Map<Integer,Exam> exams;
@@ -17,6 +18,7 @@ public class Solution {
         this.neighbours = new LinkedHashMap<>();
         this.exams = new LinkedHashMap<>();
         this.tabulist = new TabuList(7);
+        this.bestPenalty = Integer.MAX_VALUE;
     }
 
     public Map<Integer, Timeslot> getBestSolution() {
@@ -51,9 +53,11 @@ public class Solution {
         this.exams = exams;
     }
 
+    public TabuList getTabulist() {
+        return tabulist;
+    }
 
-
-    /*implementare qui una funzione che serva per scegliere il miglior neighbour e ritorni una mossa da inserire
+/*implementare qui una funzione che serva per scegliere il miglior neighbour e ritorni una mossa da inserire
     nella tabulist.
      */
 
@@ -92,23 +96,26 @@ public class Solution {
         }
     }
 
+    /*
+    for each exam it is computed which is the amount it influences the total penalty, it's then put in penalty_exam
+     */
     private int computeSingleExamPenalty(int k, Exam e, int [][] conflicts){
 
-        int[] power = new int[]{1, 2, 4 ,8 ,16};
+        int[] power = new int[]{16, 8, 4, 2, 1};
         int p, penalty=0;
 
         for(int i=-5; i<6; i++) {
 
             p = k + i;
 
-            if(p < 1)
-                break;
-
-            if(i==0)
+            if(p < 1 || i==0 || p > currentSolution.size())
                 continue;
 
             for(Exam et : this.getCurrentSolution().get(p).getExamsOfTimeslot()){
-                penalty += e.getPenalty_exam() + conflicts[e.getIdExam()-1][et.getIdExam()-1] * power[(Math.abs(i))];
+                //System.out.println("i :" + Integer.toString(i-1));
+                //System.out.println("conflict[" + w1 +"][" + w2 + "] = " + conflicts[w1][w2] );
+                penalty += conflicts[e.getIdExam()-1][et.getIdExam()-1] * power[Math.abs(i)-1];
+
             }
 
         }
@@ -123,15 +130,16 @@ public class Solution {
          That is the exam of which the position we want to change. The destination timeslot
          is chosen randomly, checking feasibility of the new solution
     */
-    public void Neighbours(int [][] conflicts){
+    public Move Neighbours(int [][] conflicts, Move moveDone){
 
         Map<Integer, Timeslot> m = new LinkedHashMap<>(currentSolution);
-        Move move = null;
+        Move mossa = null;
         int max = Integer.MIN_VALUE;
         Exam e_selected=null;
         int t_source=0;
 
         for(int j=0; j<10; j++) {
+            System.out.println("running");
             for (Map.Entry<Integer, Timeslot> entry : m.entrySet()) {
 
                 if (entry.getValue().getPenaltyPerTimeslot() > max) {
@@ -165,7 +173,8 @@ public class Solution {
             int conta = 0;
             int t_destination = (int) ((Math.random() % m.size()) + 1);
 
-            while ((t_destination == t_source) && (conta < m.size() * 2) && (checkconflict(conflicts, e_selected, m.get(t_destination)))) {
+            //qua cicla all'infinito, mettere a posto
+            while ((t_destination == t_source) || (conta < m.size() * 2) || (checkconflict(conflicts, e_selected, m.get(t_destination)))) {
 
                 t_destination = (int) ((Math.random() % m.size()) + 1);
                 conta++;
@@ -177,10 +186,15 @@ public class Solution {
             timeslotPenalty += computeSingleExamPenalty(t_destination, e_selected, conflicts);
             m.get(t_destination).setPenaltyPerTimeslot(timeslotPenalty);
 
-            move = new Move(e_selected.getIdExam(), t_destination);
+            mossa = new Move(e_selected.getIdExam(), t_destination);
 
-            neighbours.put(move, m);
+            neighbours.put(mossa, m);
         }
+        Move moveForbidden = new Move(e_selected.getIdExam(), t_source);
+
+        move(moveDone);
+
+        return moveForbidden;
 
     }
 
@@ -188,25 +202,38 @@ public class Solution {
     this function chooses which is the best neighbor and updates the current/best solution
      */
 
-    public Move move(){
+    private void move(Move moveDone){
 
-        int max = Integer.MIN_VALUE;
+        int minPenalty = Integer.MAX_VALUE;
         int penalty=0;
-        Move move = null;
-
 
         for(Map.Entry<Move, Map<Integer, Timeslot>> m : neighbours.entrySet()){
             penalty=0;
             for(Map.Entry<Integer, Timeslot> t : m.getValue().entrySet()){
                 penalty += t.getValue().getPenaltyPerTimeslot();
             }
-            if(penalty > max){
-                max = penalty;
-                move = m.getKey();
-            }
+            if(penalty < minPenalty){
+                if(tabulist.checkTabuMove(m.getKey())){
+                    if(penalty <= bestPenalty){   // aspiration criteria
+                        bestPenalty = minPenalty = penalty;
+                        bestSolution = currentSolution = m.getValue();
+                        moveDone = m.getKey();
+                    }
+                }
+                else{
+                    minPenalty = penalty;
+                    currentSolution = m.getValue();
+                    if(minPenalty < bestPenalty){
+                        bestSolution = currentSolution;
+                    }
+                    moveDone = m.getKey();
+                }
 
+            }
         }
 
-        return move;
+        return ;
     }
+
+
 }

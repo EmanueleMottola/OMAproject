@@ -23,8 +23,10 @@ public class ExaminationTimetabling {
 	double LocaltotalPenalty = 0;
 	double totalPenalty = 0;
 	// indexex start from 0, so for example if you want to know if exam 4 and 7 are in conflict you have to access the cell [3,6]
-	
 
+	public Solution getSolution() {
+		return solution;
+	}
 	// Constructor
 	public ExaminationTimetabling() {
 		/*listaE = new ArrayList<>();
@@ -36,7 +38,6 @@ public class ExaminationTimetabling {
 	
 	/* PUT THE ALGORITHM FUNCTION'S HERE*/
 	/* PUT THE ALGORITHM FUNCTION'S HERE*/
-
 
 
 	public double CalculatePenalty(){
@@ -75,10 +76,38 @@ public class ExaminationTimetabling {
             }
         }
 
-        System.out.println("Total penalty is :" + totalPenalty);
+        System.out.println("Total penalty is :" + totalPenalty/(2*numberOfStudent));
         this.LocaltotalPenalty = totalPenalty;
         return this.totalPenalty;
     }
+
+
+
+	public double TruePenalty(Map<Integer, Timeslot> sol){
+
+		int i, j;
+		double penalty=0;
+		int[] power = new int[]{1, 2, 4, 8, 16};
+
+		for (Map.Entry<Integer, Timeslot> entry1 : sol.entrySet()){
+			for(Exam e : entry1.getValue().getExamsOfTimeslot()){
+				for(Map.Entry<Integer, Timeslot> entry2 : sol.entrySet()){
+					if(entry2.getKey() <= entry1.getKey() || entry2.getKey()-entry1.getKey()>5)
+						continue;
+					else{
+						for(Exam e2 : entry2.getValue().getExamsOfTimeslot()){
+							penalty+=power[5-(entry2.getKey()-entry1.getKey())] * conflicts[e.getIdExam()-1][e2.getIdExam()-1];
+						}
+					}
+				}
+			}
+		}
+		//this.totalPenalty = penalty;
+		//this.LocaltotalPenalty = totalPenalty;
+		System.out.println("TRUE PENALTY!!!: " + penalty);
+		return penalty;
+
+	}
 
 	
     public void preACP(){
@@ -637,7 +666,7 @@ public class ExaminationTimetabling {
 
 	    for(int stop = 0; stop < 10000 ; stop++){
 	        solution.clear();
-	        moveDone = null;
+	        moveDone = new Move();
 	        smallerPenalty = Integer.MAX_VALUE;
 	        solution.Neighbours(conflicts);
 	        for(Map.Entry<Move, Map<Integer, Timeslot>> entry : solution.getNeighbours().entrySet()) {
@@ -652,24 +681,27 @@ public class ExaminationTimetabling {
 							moveDone = entry.getKey();
 							//moveDone = new Move(entry.getKey().getExamToMove(), entry.getKey().getTimeslot_source(),
 							//		entry.getKey().getTimeslot_dest());
-
+                            solution.move(moveDone, smallerPenalty, conflicts);
 						}
 					}else {
 						smallerPenalty = penalty_ne;
 						moveDone = entry.getKey();
+                        solution.move(moveDone, smallerPenalty, conflicts);
+                        solution.getTabulist().addTabuMove(moveDone);
 						//moveDone = new Move(entry.getKey().getExamToMove(), entry.getKey().getTimeslot_source(),
 						//		entry.getKey().getTimeslot_dest());
 
 					}
 				}
 			}
-			System.out.println(moveDone.toString());
+			System.out.println("stop:" + stop);
+			//System.out.println(moveDone.toString());
 			//fino a qui dovrebbe essere giusto
-			solution.move(moveDone, smallerPenalty, conflicts);
-			solution.getTabulist().addTabuMove(moveDone);
+
+
 			solution.print(solution.getCurrentSolution(), conflicts);
-            System.out.println("with penalty: " + solution.getCurrentPenalty());
-			System.out.println("The best penalty is: " + solution.getBestPenalty());
+            System.out.println("with penalty: " + solution.getCurrentPenalty()/(2*numberOfStudent));
+			System.out.println("The best penalty is: " + solution.getBestPenalty()/(2*numberOfStudent));
         }
         System.out.println("The best solution is: " );
         solution.print(solution.getBestSolution(), conflicts);

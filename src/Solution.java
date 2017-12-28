@@ -151,7 +151,7 @@ public class Solution {
         */
     public void Neighbours(int [][] conflicts){
 
-        Move mossa = null;
+        Move mossa = new Move();
         int max = Integer.MIN_VALUE;
         Exam e_selected=null;
         int t_source=0, t_destination=0;
@@ -191,6 +191,7 @@ public class Solution {
 
             addNeighbour(mossa, m);
 
+            System.out.println("(" + mossa.getExamToMove() + ", "+ mossa.getTimeslot_source()+", "+mossa.getTimeslot_dest()+")");
             //System.out.println("Print current solution: ");
             //print(currentSolution, conflicts);
             //System.out.println("Print neighbour: " + j);
@@ -206,7 +207,7 @@ public class Solution {
      */
 
     public void move(Move moveDone, double smallerPenalty, int[][] conflicts){
-        System.out.println( "Siamo denttro move" + moveDone.toString());
+//        System.out.println( "Scegliamo" + moveDone.toString());
 
         //se il neighbor scelto è migliore del best aggiorno best e current
         //altrimenti aggiorno solo current

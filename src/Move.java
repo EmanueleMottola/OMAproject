@@ -46,7 +46,6 @@ public class Move {
                 "examToMove=" + examToMove +
                 ", timeslot_source=" + timeslot_source +
                 ", timeslot_dest=" + timeslot_dest +
-
                 '}';
     }
 }

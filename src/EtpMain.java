@@ -9,11 +9,13 @@ public class EtpMain {
 		
 		et.print();
 		et.CalculatePenalty();
+		//et.TruePenalty(et.getSolution().getCurrentSolution());
 		
 		et.preTS();
 		
 		et.print();
 		et.CalculatePenalty();
+		//et.TruePenalty(et.getSolution().getCurrentSolution());
 
 		et.TabuSearch();
 	}

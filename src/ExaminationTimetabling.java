@@ -75,7 +75,7 @@ public class ExaminationTimetabling {
             }
         }
 
-        System.out.println("Total penalty is :" + totalPenalty/numberOfStudent);
+        System.out.println("Total penalty is :" + totalPenalty);
         this.LocaltotalPenalty = totalPenalty;
         return this.totalPenalty;
     }
@@ -626,18 +626,54 @@ public class ExaminationTimetabling {
 	public void TabuSearch(){
 
 	    boolean stoppingCriteria = true;
-	    Move moveForbidden, moveDone=null;
-	    int stop = 0;
+	    Move moveDone = new Move();
+	    double penalty_ne, smallerPenalty=Integer.MAX_VALUE;
+
 
 	    solution.computePenaltyExam(conflicts);
 	    solution.setBestSolution(solution.getCurrentSolution());
+	    solution.setCurrentPenalty(totalPenalty);
+	    solution.setBestPenalty(totalPenalty);
 
-	    for(;stop < 20 ; stop++){
+	    for(int stop = 0; stop < 10000 ; stop++){
 	        solution.clear();
-	        moveForbidden = solution.Neighbours(conflicts, moveDone);
-			solution.getTabulist().addTabuMove(moveForbidden);
-			System.out.println("sto girando");
+	        moveDone = null;
+	        smallerPenalty = Integer.MAX_VALUE;
+	        solution.Neighbours(conflicts);
+	        for(Map.Entry<Move, Map<Integer, Timeslot>> entry : solution.getNeighbours().entrySet()) {
+				penalty_ne = solution.getCurrentPenalty() - solution.computeSingleExamPenalty(
+						entry.getKey().getTimeslot_source(), entry.getKey().getExamToMove(), conflicts);
+				penalty_ne += solution.computeSingleExamPenalty(entry.getKey().getTimeslot_dest(),
+						entry.getKey().getExamToMove(), conflicts);
+				if (penalty_ne < smallerPenalty){
+					if (solution.getTabulist().checkTabuMove(entry.getKey())) { //if it is tabu move
+						if (penalty_ne < solution.getBestPenalty()) { //aspiration criteria
+							smallerPenalty = penalty_ne;
+							moveDone = entry.getKey();
+							//moveDone = new Move(entry.getKey().getExamToMove(), entry.getKey().getTimeslot_source(),
+							//		entry.getKey().getTimeslot_dest());
+
+						}
+					}else {
+						smallerPenalty = penalty_ne;
+						moveDone = entry.getKey();
+						//moveDone = new Move(entry.getKey().getExamToMove(), entry.getKey().getTimeslot_source(),
+						//		entry.getKey().getTimeslot_dest());
+
+					}
+				}
+			}
+			System.out.println(moveDone.toString());
+			//fino a qui dovrebbe essere giusto
+			solution.move(moveDone, smallerPenalty, conflicts);
+			solution.getTabulist().addTabuMove(moveDone);
+			solution.print(solution.getCurrentSolution(), conflicts);
+            System.out.println("with penalty: " + solution.getCurrentPenalty());
+			System.out.println("The best penalty is: " + solution.getBestPenalty());
         }
+        System.out.println("The best solution is: " );
+        solution.print(solution.getBestSolution(), conflicts);
+        System.out.println("with penalty: " + solution.getBestPenalty());
     }
 
 }

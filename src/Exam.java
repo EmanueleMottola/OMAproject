@@ -39,6 +39,8 @@ public class Exam {
 		int result = 1;
 		result = prime * result + idExam;
 		return result;
+
+
 	}
 
 	/* (non-Javadoc)

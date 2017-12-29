@@ -1,3 +1,5 @@
+import java.util.Objects;
+
 public class Move {
 
     private int examToMove; //the exam to be moved
@@ -47,5 +49,21 @@ public class Move {
                 ", timeslot_source=" + timeslot_source +
                 ", timeslot_dest=" + timeslot_dest +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Move move = (Move) o;
+        return examToMove == move.examToMove &&
+                timeslot_dest == move.timeslot_dest &&
+                timeslot_source == move.timeslot_source;
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(examToMove, timeslot_dest, timeslot_source);
     }
 }

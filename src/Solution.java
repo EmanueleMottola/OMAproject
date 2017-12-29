@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -6,8 +7,13 @@ import java.util.Random;
 
 public class Solution {
 
+    /*
+    Sono state inserite variabili per distinguere la soluzione corrente dalla migliore ottenuta
+    finora---> Map bestSolution
+    I vicini che generiamo vengono inseriti dentro la Map neighbours, pulita ogni nuova generazione
+     */
     private Map<Integer, Timeslot> bestSolution;
-    private double bestPenalty;
+    private double bestPenalty; //Penalty della best solution
     private Map<Integer, Timeslot> currentSolution;
     private double currentPenalty;
     private Map<Move, Map<Integer, Timeslot>> neighbours;
@@ -39,8 +45,15 @@ public class Solution {
         this.currentSolution = currentSolution;
     }
 
-    public void addNeighbour(Move k, Map<Integer, Timeslot> n){
+    public boolean addNeighbour(Move k, Map<Integer, Timeslot> n){
+        for(Map.Entry <Move, Map<Integer, Timeslot>> entry : neighbours.entrySet() ){
+            if(k.equals(entry.getKey())){
+                return false;
+            }
+        }
+
         neighbours.put(k, n);
+        return true;
     }
 
     public Map<Move, Map<Integer, Timeslot>> getNeighbours() {
@@ -78,6 +91,7 @@ public class Solution {
     nella tabulist.
      */
 
+    //svuota e pulisce i neighbours
     public void clear(){
         this.neighbours.clear();
     }
@@ -85,11 +99,19 @@ public class Solution {
     //this function controls that the exam e we want to insert in timeslot t isn't in conflict with the other exams of t
     private boolean checkconflict(int[][] conflicts, Exam e, Timeslot t){
 
-        for(Exam et : t.getExamsOfTimeslot()){
-            if(conflicts[et.getIdExam()-1][e.getIdExam()-1] != 0)
-                return true;
+        try{
+
+            for(Exam et : t.getExamsOfTimeslot()){
+                if(conflicts[et.getIdExam()-1][e.getIdExam()-1] != 0)
+                    return true;
+            }
+            return false;
         }
-        return false;
+        catch(NullPointerException exce){
+            System.out.println(exce.getMessage());
+            return true;
+        }
+
     }
 
     //this function assigns to each exam in each timeslot its contribution to the global penalty (see move function)
@@ -142,7 +164,7 @@ public class Solution {
 
 
 
-    /*this function creates 10 neighbours, the number is chosen arbitrary.
+    /*this function creates 6 neighbours, the number is chosen arbitrary.
          We choose the move to do in the following way:
              I consider the timeslot with the higher PenaltyPerTimeslot.
              There, we choose the exam with the higher penalty_exam.
@@ -151,13 +173,16 @@ public class Solution {
         */
     public void Neighbours(int [][] conflicts){
 
-        Move mossa = new Move();
+        Move mossa =null;
         int max = Integer.MIN_VALUE;
         Exam e_selected=null;
         int t_source=0, t_destination=0;
         Random random = new Random();
+        int i=0,k=1;
 
-        for(int j=0; j<currentSolution.size(); j++) {
+
+        while(neighbours.size() < 6) {
+
             Map<Integer, Timeslot> m = clone(currentSolution);
             max=Integer.MIN_VALUE;
 
@@ -166,39 +191,47 @@ public class Solution {
                 t_source = Math.abs(random.nextInt()) % m.size() +1;
             }
 
-            for (Exam e : m.get(t_source).getExamsOfTimeslot()) {
-                if (e.getPenalty_exam() > max) {
-                    max = e.getPenalty_exam();
-                    e_selected = new Exam(e.getIdExam() , e.getEnrolledStudents());
-                }
-            }
+            int e_sel = Math.abs(random.nextInt()) % m.get(t_source).getExamsOfTimeslot().size();
+            e_selected = m.get(t_source).getExamsOfTimeslot().get(e_sel);
+
 
             m.get(t_source).removeExamFromTimeslot(e_selected);
 
             t_destination = (Math.abs(random.nextInt()) % m.size()) + 1;
 
-            //qua cicla all'infinito, mettere a posto
-            while ( (t_destination == t_source || checkconflict(conflicts, e_selected, m.get(t_destination)))) {
+
+            while ((t_destination == t_source )|| checkconflict(conflicts, e_selected, m.get(t_destination))) {
                 int r = random.nextInt();
                 t_destination = (Math.abs(r) % m.size()) + 1;
+                i++;
+                if(i>=50){
+                    k=0;
+                    i=0;
+                    break;
+                }
             }
 
+            if(k==0){
+                k=1;
+                continue;
+            }
             m.get(t_destination).addExamToTimeslot(e_selected);
 
 
             mossa = new Move(e_selected.getIdExam(),t_source, t_destination);
             e_selected.setTimeSlot(m.get(t_destination));
 
-            addNeighbour(mossa, m);
+            if(addNeighbour(mossa, m)==false){
+                continue;
+            }
 
-            System.out.println("(" + mossa.getExamToMove() + ", "+ mossa.getTimeslot_source()+", "+mossa.getTimeslot_dest()+")");
+            //System.out.println("(" + mossa.getExamToMove() + ", "+ mossa.getTimeslot_source()+", "+mossa.getTimeslot_dest()+")");
             //System.out.println("Print current solution: ");
             //print(currentSolution, conflicts);
             //System.out.println("Print neighbour: " + j);
             //print(m, conflicts);
         }
 
-        return;
 
     }
 

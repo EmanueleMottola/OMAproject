@@ -60,7 +60,6 @@ public class ExaminationTimetabling {
                         else{
                             n = t2 - t1;
                         }
-                        //System.out.println(n);
 
                         if ( n > 5){
                             penalty = 0;
@@ -85,6 +84,7 @@ public class ExaminationTimetabling {
 
 	public double TruePenalty(Map<Integer, Timeslot> sol){
 
+		//	CALCOLO DELLA PENALTY SENZA CALCOLARE DUE VOLTE PER OGNI COPPIA DI ESAMI
 		int i, j;
 		double penalty=0;
 		int[] power = new int[]{1, 2, 4, 8, 16};
@@ -97,14 +97,14 @@ public class ExaminationTimetabling {
 					else{
 						for(Exam e2 : entry2.getValue().getExamsOfTimeslot()){
 							penalty+=power[5-(entry2.getKey()-entry1.getKey())] * conflicts[e.getIdExam()-1][e2.getIdExam()-1];
+							//System.out.println("penalty - true :" + penalty);
 						}
 					}
 				}
 			}
 		}
-		//this.totalPenalty = penalty;
-		//this.LocaltotalPenalty = totalPenalty;
-		System.out.println("TRUE PENALTY!!!: " + penalty);
+
+		System.out.println("TRUE PENALTY!!!: " + penalty/(numberOfStudent));
 		return penalty;
 
 	}
@@ -656,56 +656,77 @@ public class ExaminationTimetabling {
 
 	    boolean stoppingCriteria = true;
 	    Move moveDone = new Move();
-	    double penalty_ne, smallerPenalty=Integer.MAX_VALUE;
+	    double penalty_ne=0, smallerPenalty=Integer.MAX_VALUE;
+	    int stop=0;
 
 
+	    //inizialmente la nostra current solution e la nostra best coincidono!
 	    solution.computePenaltyExam(conflicts);
 	    solution.setBestSolution(solution.getCurrentSolution());
 	    solution.setCurrentPenalty(totalPenalty);
 	    solution.setBestPenalty(totalPenalty);
 
-	    for(int stop = 0; stop < 10000 ; stop++){
+	    //tempo di esecuzione del tabusearch
+		long t= System.currentTimeMillis();
+		long end = t+30000;
+
+		//TABU SEARCH
+		while(System.currentTimeMillis() < end){
+			//puliamo i neighbor e svuotiamo la mossa
 	        solution.clear();
-	        moveDone = new Move();
+	        moveDone = null;
 	        smallerPenalty = Integer.MAX_VALUE;
+
+	        //generiamo i neighbor
 	        solution.Neighbours(conflicts);
+
+	        //per ogni neighbor generato
 	        for(Map.Entry<Move, Map<Integer, Timeslot>> entry : solution.getNeighbours().entrySet()) {
+
+	        	//calcoliamo la penalty
 				penalty_ne = solution.getCurrentPenalty() - solution.computeSingleExamPenalty(
 						entry.getKey().getTimeslot_source(), entry.getKey().getExamToMove(), conflicts);
+
 				penalty_ne += solution.computeSingleExamPenalty(entry.getKey().getTimeslot_dest(),
 						entry.getKey().getExamToMove(), conflicts);
+
+				//valutiamo se la mossa genera il neighbor migliore tra quelli generati
 				if (penalty_ne < smallerPenalty){
-					if (solution.getTabulist().checkTabuMove(entry.getKey())) { //if it is tabu move
-						if (penalty_ne < solution.getBestPenalty()) { //aspiration criteria
+					//controlliamo se la mossa è tabu
+					if (solution.getTabulist().checkTabuMove(entry.getKey())) {
+						//controlliamo aspiration criteria
+						if (penalty_ne < solution.getBestPenalty()) {
 							smallerPenalty = penalty_ne;
 							moveDone = entry.getKey();
-							//moveDone = new Move(entry.getKey().getExamToMove(), entry.getKey().getTimeslot_source(),
-							//		entry.getKey().getTimeslot_dest());
-                            solution.move(moveDone, smallerPenalty, conflicts);
 						}
+
 					}else {
+						//assegnamo la mossa alla mossa migliore e aggiorniamo penalty
 						smallerPenalty = penalty_ne;
 						moveDone = entry.getKey();
-                        solution.move(moveDone, smallerPenalty, conflicts);
-                        solution.getTabulist().addTabuMove(moveDone);
-						//moveDone = new Move(entry.getKey().getExamToMove(), entry.getKey().getTimeslot_source(),
-						//		entry.getKey().getTimeslot_dest());
-
 					}
+
 				}
 			}
-			System.out.println("stop:" + stop);
+
+			//se non prende nessuna mossa tra quelle generate (perché tutte nella tabu list)
+			if(moveDone == null)
+				continue;
+
+	        //faccio la mossa e aggiorno tabulist
+			solution.move(moveDone, smallerPenalty, conflicts);
+			solution.getTabulist().addTabuMove(moveDone);
+			System.out.println("stop:" + stop++);
 			//System.out.println(moveDone.toString());
 			//fino a qui dovrebbe essere giusto
 
-
-			solution.print(solution.getCurrentSolution(), conflicts);
-            System.out.println("with penalty: " + solution.getCurrentPenalty()/(2*numberOfStudent));
-			System.out.println("The best penalty is: " + solution.getBestPenalty()/(2*numberOfStudent));
+			//solution.print(solution.getCurrentSolution(), conflicts);
+            //System.out.println("with penalty: " + solution.getCurrentPenalty()/(2*numberOfStudent));
+			//System.out.println("The best penalty is: " + solution.getBestPenalty()/(2*numberOfStudent));
         }
-        System.out.println("The best solution is: " );
-        solution.print(solution.getBestSolution(), conflicts);
-        System.out.println("with penalty: " + solution.getBestPenalty());
+        //System.out.println("The best solution is: " );
+        //solution.print(solution.getBestSolution(), conflicts);
+        //System.out.println("with penalty: " + solution.getBestPenalty());
     }
 
 }

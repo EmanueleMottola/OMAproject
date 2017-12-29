@@ -35,6 +35,7 @@ public class Timeslot {
 	
 	public void removeExamFromTimeslot(Exam e) {
 		examsTimeslot.remove(e);
+
 	}
 
 	/* (non-Javadoc)

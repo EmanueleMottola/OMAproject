@@ -16,9 +16,10 @@ public class TabuList {
     public boolean addTabuMove(Move move){
 
         Move m = new Move();
-        System.out.println("Exam id:" + move.getExamToMove());
+
+        /*System.out.println("Exam id:" + move.getExamToMove());
         System.out.println("t_source:" + move.getTimeslot_source());
-        System.out.println("t_dest:" + move.getTimeslot_dest());
+        System.out.println("t_dest:" + move.getTimeslot_dest());*/
         m.setExamToMove(move.getExamToMove());
         m.setTimeslot_dest(move.getTimeslot_source());
         m.setTimeslot_source(move.getTimeslot_dest());

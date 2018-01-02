@@ -1,40 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="78008f53-192e-4eda-8c06-96f64e7d02e6" name="Default" comment="Completly works">
-      <change beforePath="" afterPath="$PROJECT_DIR$/instance02.exm" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/instance02.slo" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/instance02.stu" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/instance03.exm" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/instance03.slo" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/instance03.stu" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/instance04.exm" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/instance04.slo" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/instance04.stu" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/instance05.exm" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/instance05.slo" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/instance05.stu" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/instance06.exm" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/instance06.slo" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/instance06.stu" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/instance07.exm" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/instance07.slo" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/instance07.stu" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/out/production/OMA/Move.class" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/out/production/OMA/Solution.class" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/out/production/OMA/TabuList.class" />
+    <list default="true" id="78008f53-192e-4eda-8c06-96f64e7d02e6" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/out/production/OMA/EtpMain.class" afterPath="$PROJECT_DIR$/out/production/OMA/EtpMain.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/OMA/Exam.class" afterPath="$PROJECT_DIR$/out/production/OMA/Exam.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/OMA/ExaminationTimetabling.class" afterPath="$PROJECT_DIR$/out/production/OMA/ExaminationTimetabling.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/OMA/Timeslot.class" afterPath="$PROJECT_DIR$/out/production/OMA/Timeslot.class" />
-      <change beforePath="$PROJECT_DIR$/src/EtpMain.java" afterPath="$PROJECT_DIR$/src/EtpMain.java" />
-      <change beforePath="$PROJECT_DIR$/src/Exam.java" afterPath="$PROJECT_DIR$/src/Exam.java" />
-      <change beforePath="$PROJECT_DIR$/src/ExaminationTimetabling.java" afterPath="$PROJECT_DIR$/src/ExaminationTimetabling.java" />
-      <change beforePath="$PROJECT_DIR$/src/Move.java" afterPath="$PROJECT_DIR$/src/Move.java" />
-      <change beforePath="$PROJECT_DIR$/src/Solution.java" afterPath="$PROJECT_DIR$/src/Solution.java" />
-      <change beforePath="$PROJECT_DIR$/src/TabuList.java" afterPath="$PROJECT_DIR$/src/TabuList.java" />
-      <change beforePath="$PROJECT_DIR$/src/Timeslot.java" afterPath="$PROJECT_DIR$/src/Timeslot.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -333,7 +301,7 @@
       <workItem from="1514659312202" duration="4647000" />
       <workItem from="1514664318216" duration="783000" />
       <workItem from="1514673581322" duration="12852000" />
-      <workItem from="1514902492599" duration="281000" />
+      <workItem from="1514902492599" duration="384000" />
     </task>
     <task id="LOCAL-00001" summary="Solution class added">
       <created>1514304585723</created>
@@ -419,11 +387,18 @@
       <option name="project" value="LOCAL" />
       <updated>1514550196676</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Try to find fisrt solution">
+      <created>1514902799677</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1514902799677</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="199521000" />
+    <option name="totallyTimeSpent" value="199624000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -479,7 +454,8 @@
     <MESSAGE value="Mettere a posto il loop" />
     <MESSAGE value="it works" />
     <MESSAGE value="Completly works" />
-    <option name="LAST_COMMIT_MESSAGE" value="Completly works" />
+    <MESSAGE value="Try to find fisrt solution" />
+    <option name="LAST_COMMIT_MESSAGE" value="Try to find fisrt solution" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

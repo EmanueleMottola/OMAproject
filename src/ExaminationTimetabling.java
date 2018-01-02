@@ -28,6 +28,7 @@ public class ExaminationTimetabling {
 		solution.initializeConflictsMatrix();
 		readFileSlo(fileSlo);
 		readFileStu(fileStu);
+		CreateFileTxt(solution.getConflicts());
 		/* Print the Map of exams
 		 * for (Map.Entry<Integer, Exam> entry : exams.entrySet())
 		    System.out.println(entry.getKey() + " " + entry.getValue().getEnrolledStudents());

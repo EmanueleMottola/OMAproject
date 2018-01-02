@@ -3,8 +3,8 @@ import java.util.Objects;
 public class Move {
 
     private int examToMove; //the exam to be moved
+    private int timeslot_source; //the timeslot where the exam is take
     private int timeslot_dest; //the timeslot where the exam is put
-    private int timeslot_source; //the timeslot where the exam is taken
 
     public Move (){
         this.examToMove = -1;
@@ -57,13 +57,13 @@ public class Move {
         if (o == null || getClass() != o.getClass()) return false;
         Move move = (Move) o;
         return examToMove == move.examToMove &&
-                timeslot_dest == move.timeslot_dest &&
-                timeslot_source == move.timeslot_source;
+                timeslot_source == move.timeslot_source &&
+                timeslot_dest == move.timeslot_dest;
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(examToMove, timeslot_dest, timeslot_source);
+        return Objects.hash(examToMove, timeslot_source, timeslot_dest);
     }
 }

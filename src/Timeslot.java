@@ -5,14 +5,14 @@ import java.util.List;
 public class Timeslot {
 	private int idTimeslot;
 	private List<Exam> examsTimeslot;
-	private int penaltyPerTimeslot;
+	private int conflictsPerTimeslot;
 
-	public int getPenaltyPerTimeslot() {
-		return penaltyPerTimeslot;
+	public int getConflictsPerTimeslot() {
+		return conflictsPerTimeslot;
 	}
 
-	public void setPenaltyPerTimeslot(int penaltyPerTimeslot) {
-		this.penaltyPerTimeslot = penaltyPerTimeslot;
+	public void setConflictsPerTimeslot(int conflictsPerTimeslot) {
+		this.conflictsPerTimeslot = conflictsPerTimeslot;
 	}
 
 	// Constructor

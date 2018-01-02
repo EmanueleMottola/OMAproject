@@ -5,25 +5,11 @@ public class EtpMain {
 		ExaminationTimetabling et = new ExaminationTimetabling();
 		et.fillData("instance01.exm", "instance01.slo", "instance01.stu");
 		//et.fillData("esami.txt", "timeslots.txt", "studenti.txt");
-		et.preACP();
-		
-		et.print();
-		et.CalculatePenalty();
 
-		/*et.TruePenalty(et.getSolution().getCurrentSolution());
-		
-		et.preTS();
-		
-		et.print();
-		et.CalculatePenalty();*/
+		et.firstSolution();
 
 
-		et.TruePenalty(et.getSolution().getCurrentSolution());
-
-		et.TabuSearch();
-
-		et.print();
-		et.TruePenalty(et.getSolution().getBestSolution());
+		//et.TabuSearch();
 
 	}
 

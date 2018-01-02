@@ -4,14 +4,14 @@ public class Exam {
 	private int idExam;
 	private int enrolledStudents;
 	private Timeslot assignedTimeSlot;
-	private int penalty_exam;
-
-
+	private int numberOfConflicts;
 
 	public Exam(int idExam, int enrolledStudents) {
 		this.idExam = idExam;
 		this.enrolledStudents = enrolledStudents;
 		this.assignedTimeSlot = null;
+		this.numberOfConflicts = 0;
+
 	}
 	
 	public int getIdExam() {
@@ -30,6 +30,14 @@ public class Exam {
 		assignedTimeSlot = timeslot;
 	}
 
+	public int getNumberOfConflicts() {
+		return numberOfConflicts;
+	}
+
+	public void setNumberOfConflicts(int numberOfConflicts) {
+		this.numberOfConflicts = numberOfConflicts;
+	}
+
 	/* (non-Javadoc)
 	 * @see java.lang.Object#hashCode()
 	 */
@@ -39,8 +47,6 @@ public class Exam {
 		int result = 1;
 		result = prime * result + idExam;
 		return result;
-
-
 	}
 
 	/* (non-Javadoc)
@@ -69,12 +75,12 @@ public class Exam {
 		return "Exam " + idExam;
 	}
 
-	public int getPenalty_exam() {
-		return penalty_exam;
-	}
-
-	public void setPenalty_exam(int penalty_exam) {
-		this.penalty_exam = penalty_exam;
+	public int compare(Exam e1, Exam e2){
+		if(e1.numberOfConflicts < e2.numberOfConflicts)
+			return -1;
+		if(e1.numberOfConflicts > e2.numberOfConflicts)
+			return 1;
+		return 0;
 	}
 
 }

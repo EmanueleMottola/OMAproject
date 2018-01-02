@@ -45,9 +45,12 @@ public class TabuList {
     }
 
     private boolean equal(Move et, Move e){
+
+        //controllo swap
         if(et.getExamToMove() == e.getExamToMove() && et.getTimeslot_source() == e.getTimeslot_source() &&
-                et.getTimeslot_dest() == e.getTimeslot_dest())
+                et.getTimeslot_dest() == e.getTimeslot_dest() )
             return true;
+
         return false;
     }
 

@@ -1,9 +1,4 @@
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Random;
+import java.util.*;
 
 public class Solution {
 
@@ -17,14 +12,17 @@ public class Solution {
     private Map<Integer, Timeslot> currentSolution;
     private double currentPenalty;
     private Map<Move, Map<Integer, Timeslot>> neighbours;
-    private Map<Integer, Exam> bestExam;
+    private Queue<Exam> priorityExams;
+    private Map<Integer, Exam> exams;
     private TabuList tabulist;
+    private int[][] conflicts;
 
     public Solution() {
         this.bestSolution = new LinkedHashMap<>();
         this.currentSolution = new LinkedHashMap<>();
         this.neighbours = new LinkedHashMap<>();
-        this.bestExam = new LinkedHashMap<>();
+        this.priorityExams = new PriorityQueue<>((a, b) -> b.getNumberOfConflicts() - a.getNumberOfConflicts());
+        this.exams = new LinkedHashMap<>();
         this.tabulist = new TabuList(7);
         this.bestPenalty = Integer.MAX_VALUE;
     }
@@ -60,12 +58,12 @@ public class Solution {
         return neighbours;
     }
 
-    public Map<Integer, Exam> getExams() {
-        return bestExam;
+    public Queue<Exam> getPriorityExams() {
+        return priorityExams;
     }
 
-    public void setExams(Map<Integer, Exam> exams) {
-        this.bestExam = exams;
+    public Map<Integer, Exam> getExams() {
+        return exams;
     }
 
     public TabuList getTabulist() {
@@ -87,20 +85,42 @@ public class Solution {
     public void setCurrentPenalty(double currentPenalty) {
         this.currentPenalty = currentPenalty;
     }
-    /*implementare qui una funzione che serva per scegliere il miglior neighbour e ritorni una mossa da inserire
-    nella tabulist.
-     */
+
+    public int[][] getConflicts() {
+        return conflicts;
+    }
 
     //svuota e pulisce i neighbours
     public void clear(){
         this.neighbours.clear();
     }
 
-    //this function controls that the exam e we want to insert in timeslot t isn't in conflict with the other exams of t
-    private boolean checkconflict(int[][] conflicts, Exam e, Timeslot t){
+    public void initializeConflictsMatrix() {
+
+        int totExams = exams.size();
+        conflicts = new int[totExams][totExams];
+        for(int i=0; i<totExams; i++)
+            for(int j=0; j<totExams; j++)
+                conflicts[i][j] = 0;
+    }
+
+    public void fillConflictsMatrix(List<Integer> tmp) {
+        int h, k;
+        //System.out.println(tmp.size());
+        if(tmp.size() > 1)
+            for(int i=0; i<tmp.size()-1; i++)
+                for(int j=i+1; j<tmp.size(); j++)
+                {
+                    h = tmp.get(i) - 1; // -1 because examIds start from 1 but the rowIndex of the matrix starts from 0
+                    k = tmp.get(j) - 1; // -1 because examIds start from 1 but the columnIndex of the matrix starts from 0
+                    conflicts[h][k]++;
+                    conflicts[k][h]++;
+                }
+    }
+
+    private boolean checkconflict(Exam e, Timeslot t){
 
         try{
-
             for(Exam et : t.getExamsOfTimeslot()){
                 if(conflicts[et.getIdExam()-1][e.getIdExam()-1] != 0)
                     return true;
@@ -114,75 +134,28 @@ public class Solution {
 
     }
 
-    //this function assigns to each exam in each timeslot its contribution to the global penalty (see move function)
-    public void computePenaltyExam(int [][] conflicts){
 
-        int penalty=0, timeslotPenalty;
-
-        for(Map.Entry<Integer, Timeslot> entry : this.getCurrentSolution().entrySet()){
-
-            timeslotPenalty = 0;
-
-            for(Exam e : entry.getValue().getExamsOfTimeslot()){
-
-                penalty = computeSingleExamPenalty(entry.getKey(), e.getIdExam(), conflicts);
-
-                e.setPenalty_exam(penalty);
-                timeslotPenalty += penalty;
-            }
-
-            entry.getValue().setPenaltyPerTimeslot(timeslotPenalty);
-        }
-    }
-
-    /*
-    for each exam it is computed which is the amount it influences the total penalty, it's then put in penalty_exam
-     */
-    public int computeSingleExamPenalty(int timeslot_id, int e_id, int [][] conflicts){
-
-        int[] power = new int[]{16, 8, 4, 2, 1};
-        int p, penalty=0;
-
-        for(int i=-5; i<6; i++) {
-
-            p = timeslot_id + i;
-
-            if(p < 1 || i==0 || p > currentSolution.size())
-                continue;
-
-            for(Exam et : this.getCurrentSolution().get(p).getExamsOfTimeslot()){
-                //System.out.println("i :" + Integer.toString(i-1));
-                //System.out.println("conflict[" + w1 +"][" + w2 + "] = " + conflicts[w1][w2] );
-                penalty += conflicts[e_id-1][et.getIdExam()-1] * power[Math.abs(i)-1];
-
-            }
-
-        }
-
-        return penalty;
-    }
-
-
-
-    /*this function creates 6 neighbours, the number is chosen arbitrary.
+    /*this function creates n neighbours, the number is chosen arbitrary.
          We choose the move to do in the following way:
              I consider the timeslot with the higher PenaltyPerTimeslot.
              There, we choose the exam with the higher penalty_exam.
              That is the exam of which the position we want to change. The destination timeslot
-             is chosen randomly, checking feasibility of the new solution
-        */
-    public void Neighbours(int [][] conflicts){
+            is chosen randomly, checking feasibility of the new solution
+    */
+
+    public void Neighbours(){
 
         Move mossa =null;
-        int max = Integer.MIN_VALUE;
+        int max;
         Exam e_selected=null;
         int t_source=0, t_destination=0;
         Random random = new Random();
         int i=0,k=1;
 
 
-        while(neighbours.size() < 6) {
+        while(neighbours.size() < 100) {
 
+            System.out.println("Sto cercando un neighbor");
             Map<Integer, Timeslot> m = clone(currentSolution);
             max=Integer.MIN_VALUE;
 
@@ -194,34 +167,20 @@ public class Solution {
             int e_sel = Math.abs(random.nextInt()) % m.get(t_source).getExamsOfTimeslot().size();
             e_selected = m.get(t_source).getExamsOfTimeslot().get(e_sel);
 
-
             m.get(t_source).removeExamFromTimeslot(e_selected);
 
             t_destination = (Math.abs(random.nextInt()) % m.size()) + 1;
 
-
-            while ((t_destination == t_source )|| checkconflict(conflicts, e_selected, m.get(t_destination))) {
-                int r = random.nextInt();
-                t_destination = (Math.abs(r) % m.size()) + 1;
-                i++;
-                if(i>=50){
-                    k=0;
-                    i=0;
-                    break;
-                }
-            }
-
-            if(k==0){
-                k=1;
+            if((t_destination == t_source )|| checkconflict(e_selected, m.get(t_destination))){
                 continue;
             }
             m.get(t_destination).addExamToTimeslot(e_selected);
 
 
-            mossa = new Move(e_selected.getIdExam(),t_source, t_destination);
+            mossa = new Move(e_selected.getIdExam(), t_source, t_destination);
             e_selected.setTimeSlot(m.get(t_destination));
 
-            if(addNeighbour(mossa, m)==false){
+            if(!addNeighbour(mossa, m)){
                 continue;
             }
 
@@ -234,13 +193,12 @@ public class Solution {
 
 
     }
-
     /*
     this function chooses which is the best neighbor and updates the current/best solution
      */
 
-    public void move(Move moveDone, double smallerPenalty, int[][] conflicts){
-//        System.out.println( "Scegliamo" + moveDone.toString());
+    public void move(Move moveDone, double smallerPenalty){
+        //System.out.println( "Scegliamo" + moveDone.toString());
 
         //se il neighbor scelto è migliore del best aggiorno best e current
         //altrimenti aggiorno solo current
@@ -255,56 +213,15 @@ public class Solution {
     }
 
 
-
-    public void print(Map<Integer, Timeslot> map, int [][] conflicts){
-        List<Exam> lista_c = new ArrayList<>();
-
-        for(Map.Entry<Integer, Timeslot> entry : map.entrySet()){
-            System.out.println(entry.getValue().getExamsOfTimeslot().toString());
-            for(Exam e1 : entry.getValue().getExamsOfTimeslot()){
-                for(Exam e2 : entry.getValue().getExamsOfTimeslot()){
-                    if(!e1.equals(e2)){
-                        if(conflicts[e1.getIdExam()-1][e2.getIdExam()-1]!=0){
-                            System.out.println("Studente/i in comune tra gli esami " + e1.getIdExam() + " "+
-                                    e2.getIdExam()+ " (valore conflicts: "+conflicts[e1.getIdExam()-1][e2.getIdExam()-1]+") in " +entry.getValue().toString());
-                        }
-                    }
-                }
-            }
-        }
-
-        for(Map.Entry<Integer, Exam> entry1 : bestExam.entrySet()){
-            boolean p = false;
-            for(Map.Entry<Integer, Timeslot> entry2 : map.entrySet()){
-                if(entry2.getValue().getExamsOfTimeslot().contains(entry1.getValue())){
-                    if(p){
-                        System.out.println(entry1.getValue() + "gia presente");
-                    }
-                    p = true;
-                }
-            }
-            if(!p){
-                lista_c.add(entry1.getValue());
-            }
-        }
-
-        System.out.println("lista esami non inseriti nei timeslots: " +lista_c.toString());
-
-
-
-    }
-
     private Map<Integer, Timeslot> clone(Map<Integer, Timeslot> map){
 
         Map<Integer, Timeslot> m = new LinkedHashMap<>();
 
         for(Map.Entry<Integer, Timeslot> entry : map.entrySet()){
             Timeslot t = new Timeslot(entry.getKey());
-            t.setPenaltyPerTimeslot(entry.getValue().getPenaltyPerTimeslot());
             for(Exam e : entry.getValue().getExamsOfTimeslot()) {
                 Exam et = new Exam(e.getIdExam(), e.getEnrolledStudents());
                 et.setTimeSlot(t);
-                et.setPenalty_exam(e.getPenalty_exam());
                 t.addExamToTimeslot(et);
             }
             m.put(entry.getKey(), t);

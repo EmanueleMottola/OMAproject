@@ -5,16 +5,7 @@ import java.util.List;
 public class Timeslot {
 	private int idTimeslot;
 	private List<Exam> examsTimeslot;
-	private int penaltyPerTimeslot;
-
-	public int getPenaltyPerTimeslot() {
-		return penaltyPerTimeslot;
-	}
-
-	public void setPenaltyPerTimeslot(int penaltyPerTimeslot) {
-		this.penaltyPerTimeslot = penaltyPerTimeslot;
-	}
-
+	
 	// Constructor
 	public Timeslot(int idTimeSlot) {
 		this.idTimeslot = idTimeSlot;
@@ -35,7 +26,6 @@ public class Timeslot {
 	
 	public void removeExamFromTimeslot(Exam e) {
 		examsTimeslot.remove(e);
-
 	}
 
 	/* (non-Javadoc)

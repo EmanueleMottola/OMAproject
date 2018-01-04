@@ -4,10 +4,8 @@ public class Exam {
 	private int idExam;
 	private int enrolledStudents;
 	private Timeslot assignedTimeSlot;
-	private int penalty_exam;
 
-
-
+	
 	public Exam(int idExam, int enrolledStudents) {
 		this.idExam = idExam;
 		this.enrolledStudents = enrolledStudents;
@@ -39,8 +37,6 @@ public class Exam {
 		int result = 1;
 		result = prime * result + idExam;
 		return result;
-
-
 	}
 
 	/* (non-Javadoc)
@@ -68,13 +64,7 @@ public class Exam {
 	public String toString() {
 		return "Exam " + idExam;
 	}
-
-	public int getPenalty_exam() {
-		return penalty_exam;
-	}
-
-	public void setPenalty_exam(int penalty_exam) {
-		this.penalty_exam = penalty_exam;
-	}
+	
+	
 
 }

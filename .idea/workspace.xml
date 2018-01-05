@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="78008f53-192e-4eda-8c06-96f64e7d02e6" name="Default" comment="">
+    <list default="true" id="78008f53-192e-4eda-8c06-96f64e7d02e6" name="Default" comment="Definitive version">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/instance05_OMAMZ_group14.sol" afterPath="$PROJECT_DIR$/instance05_OMAMZ_group14.sol" />
       <change beforePath="$PROJECT_DIR$/out/production/OMA/EtpMain.class" afterPath="$PROJECT_DIR$/out/production/OMA/EtpMain.class" />
-      <change beforePath="$PROJECT_DIR$/src/ExaminationTimetabling.java" afterPath="$PROJECT_DIR$/src/ExaminationTimetabling.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -311,7 +309,7 @@
       <workItem from="1515157245927" duration="144000" />
       <workItem from="1515157471039" duration="210000" />
       <workItem from="1515157709022" duration="2417000" />
-      <workItem from="1515160264327" duration="280000" />
+      <workItem from="1515160264327" duration="299000" />
     </task>
     <task id="LOCAL-00001" summary="Solution class added">
       <created>1514304585723</created>
@@ -397,11 +395,18 @@
       <option name="project" value="LOCAL" />
       <updated>1515108802178</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Definitive version">
+      <created>1515160555065</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1515160555067</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="172378000" />
+    <option name="totallyTimeSpent" value="172397000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">

@@ -33,8 +33,8 @@ public class ExaminationTimetabling {
 	public void tabuSearch(String filename) {
 		Map<Integer,Exam> examsCurrent = new LinkedHashMap<Integer, Exam>();
 		Map<Integer, Timeslot> timeslotsCurrent = new LinkedHashMap<Integer, Timeslot>();
-		LimitedQueue<Move> tabuList = new LimitedQueue<>(80); // 
-		LimitedQueue<Move> movesDoneList = new LimitedQueue<>(120);
+		LimitedQueue<Move> tabuList = new LimitedQueue<>(40); //
+		LimitedQueue<Move> movesDoneList = new LimitedQueue<>(15);
 		Move bestNeighborMove;
 		Move reverseMove;
 		double objValueCurrentSolution;
@@ -57,6 +57,7 @@ public class ExaminationTimetabling {
 
 		// tabu search algorithm
 		objValueBestSolution = TruePenalty(timeslots);
+		writeSolutionOnFile(filename);
 		while(System.currentTimeMillis() < end) {
 			for(Timeslot tOld : timeslotsCurrent.values())
 			{
@@ -69,11 +70,10 @@ public class ExaminationTimetabling {
 					movesDoneList.add(bestNeighborMove);					
 					if((objValueCurrentSolution = TruePenalty(timeslotsCurrent)) < objValueBestSolution) // check if the best solution found so far
 					{
+						objValueBestSolution=objValueCurrentSolution;
 						preTS(0, timeslotsCurrent);	
 						updateBestSolution(examsCurrent, timeslotsCurrent);
-						objValueCurrentSolution = TruePenalty(timeslotsCurrent);
-						objValueBestSolution = objValueCurrentSolution;
-						System.out.println("Migliorato! --->" + objValueBestSolution/this.numberOfStudent);
+						objValueCurrentSolution = objValueBestSolution;
 						writeSolutionOnFile(filename);
 					}
 				}
@@ -149,7 +149,6 @@ public class ExaminationTimetabling {
 				{
 					if(satisfiesAspirationCriterion(objValueCurrentNeighbor, objValueBestSolution)) // is  a tabu move so i consider the aspiration criteria
 					{
-						System.out.println("Aspiration criterion applied!");
 						indexBestMove = i;
 						objValueBestMove = objValueCurrentNeighbor;
 					}
@@ -620,7 +619,7 @@ public class ExaminationTimetabling {
 					
 					if(newP < this.objValueBestSolution){
 						this.objValueBestSolution = newP;
-						System.out.println("Scambio " +	newP/this.numberOfStudent );
+						//System.out.println("Scambio " +	newP/this.numberOfStudent );
 
 						ts1 = t1.getIdTimeSlot();
 						ts2 = t2.getIdTimeSlot();
@@ -640,11 +639,7 @@ public class ExaminationTimetabling {
 				
 			}
 		}
-		if(ObjFuncFirstSolution() != 0){
-			System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAaARGH!!");
-		}
-		//System.out.println("fine preTS");
-		//print();
+
 		if(ts1 != 0){
 			
 			Timeslot t1 = timeslots.get(ts1);
